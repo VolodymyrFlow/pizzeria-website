@@ -11,9 +11,7 @@ function OrderItem({ item, onIncrease, onDecrease, onRemove }) {
         </div>
       </div>
 
-      <strong>
-        €{(Number(item.price.replace("€", "")) * item.quantity).toFixed(2)}
-      </strong>
+      <strong>€{(item.price * item.quantity).toFixed(2)}</strong>
 
       <button className="remove-button" onClick={() => onRemove(item.name)}>
         Remove

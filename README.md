@@ -2796,3 +2796,32 @@ A component is a function that returns JSX. Props are what the parent passes to 
 ```js
 price: "€9.50";
 ```
+
+## Coding Session 96 — Price Formatting and Conditional Text
+
+**Date:** September 13, 2026
+**Type:** Practice + detailed code review
+
+### What I did
+
+- Updated `OrderItem.jsx` to calculate each item’s cost using numeric prices
+- Removed the unnecessary `Number()` and `.replace()` operations
+- Updated `PizzaCard.jsx` to display the euro symbol and two decimal places
+- Practiced `.toFixed(2)` for displaying prices
+- Corrected a method-name typo: `toFixedd` → `toFixed`
+- Resolved the Total display issue by saving the edited files
+- Practiced a ternary operator to choose between "item" and "items"
+
+### Key lessons
+
+- Store prices as numbers and add currency symbols when displaying them
+- `.toFixed(2)` returns a string with two decimal places
+- JavaScript method names must be spelled exactly
+- Save changes before checking the result in the browser
+- A ternary operator follows: condition ? valueIfTrue : valueIfFalse
+
+### Next session
+
+- Verify the item/items text with different quantities
+- Check cart totals and persistence after refreshing
+- Handle saved carts containing prices in the old string format

@@ -249,7 +249,9 @@ function App() {
           <p className="empty-order">Your order is empty</p>
         ) : (
           <>
-            <p className="order-count">{totalItems} items in your order</p>
+            <p className="order-count">
+              {totalItems} {totalItems === 1 ? "item" : "items"} in your order
+            </p>
 
             <div className="order-list">
               {orderItems.map((item) => (

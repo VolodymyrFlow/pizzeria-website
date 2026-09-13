@@ -6,7 +6,7 @@ const pizzas = [
   {
     name: "Margherita",
     description: "Tomato sauce, mozzarella, fresh basil and olive oil.",
-    price: "€9.50",
+    price: 9.5,
     image: margheritaImg,
     rating: 4.9,
     spicy: false,
@@ -16,7 +16,7 @@ const pizzas = [
   {
     name: "Diavola",
     description: "Tomato sauce, mozzarella, spicy salami and chili.",
-    price: "€11.50",
+    price: 11.5,
     image: diavolaImg,
     rating: 4.8,
     spicy: true,
@@ -26,7 +26,7 @@ const pizzas = [
   {
     name: "Prosciutto",
     description: "Tomato sauce, mozzarella, prosciutto cotto and mushrooms.",
-    price: "€12.50",
+    price: 12.5,
     image: prosciuttoImg,
     rating: 4.7,
     spicy: false,
