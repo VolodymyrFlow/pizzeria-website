@@ -2825,3 +2825,74 @@ price: "€9.50";
 - Verify the item/items text with different quantities
 - Check cart totals and persistence after refreshing
 - Handle saved carts containing prices in the old string format
+
+## Coding Session 97 — Cart Compatibility and Gallery Component
+
+**Date:** September 14, 2026
+**Type:** Guided coding practice + code explanation in English
+
+### Goal
+
+Continue finishing the pizzeria portfolio project and preparing for a Web Developer role in Prague.
+
+### What I Did
+
+- Updated cart loading to convert old string prices, such as `"€9.50"`, into numbers.
+- Used `map()`, object spread, `typeof`, `.replace()`, and `Number()`.
+- Kept existing numeric prices unchanged.
+- Created `Gallery.jsx` and moved the gallery markup and image imports into it.
+- Imported and rendered `<Gallery />` in `App.jsx`.
+- Removed unused gallery image imports from `App.jsx`.
+
+### What I Tested
+
+- Checked item counts, cart totals, and persistence after refreshing.
+- Reproduced `NaN` by multiplying a price containing the euro symbol.
+- Tested the conversion with both string and numeric prices in DevTools Console.
+- Confirmed that the total reached €42.00 and the cart stayed the same after refreshing.
+- Confirmed that the gallery appeared once and displayed all three images.
+
+### Testing Limitation
+
+- Tested old-price conversion separately in Console.
+- Loading a complete legacy cart through the application still needs verification.
+
+### What I Learned
+
+- `item.price` accesses an object's property; `"item.price"` is literal text.
+- `JSON.parse()` restores saved data but does not automatically convert currency strings into numbers.
+- Changing source data does not automatically update existing `localStorage` data.
+- Object spread copies properties; a property written after the spread replaces the copied value.
+- `../assets/` means going up one folder before entering `assets`.
+- Refactoring changes code structure while preserving behavior.
+- DevTools Console can help reproduce and investigate calculation problems.
+
+### English Practice
+
+Practiced explaining:
+
+- What the pizzeria website does.
+- Why code is split into components.
+- How PizzaCard receives props and calls a callback after a click.
+- What I changed and how I tested it.
+
+Useful sentences:
+
+- “I updated the cart-loading code to convert old string prices to numbers.”
+- “I tested it by adding pizzas to the order and refreshing the page.”
+- “The gallery appears once, and all three images are displayed.”
+
+Vocabulary: convert, property, literal string, rendering, refactoring, preserved.
+
+### Next Session
+
+- Explain `Gallery.jsx` line by line in English.
+- Continue splitting suitable sections out of `App.jsx`.
+- Keep working toward a finished, tested, and deployed portfolio website.
+
+### Learning Format
+
+- Write code myself with step-by-step guidance.
+- Understand each change before moving on.
+- Practice English explanations and correct mistakes.
+- Connect practical tasks to the vacancy requirements.

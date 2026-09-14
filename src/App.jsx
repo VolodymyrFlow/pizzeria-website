@@ -7,6 +7,7 @@ import About from "./components/About";
 import PizzaCard from "./components/PizzaCard";
 import Featured from "./components/Featured";
 import OrderItem from "./components/OrderItem";
+import Gallery from "./components/Gallery";
 import pizzas from "./data/pizzas";
 
 import margheritaImg from "./assets/margherita.jpg";
@@ -48,7 +49,15 @@ function App() {
   const [orderItems, setOrderItems] = useState(() => {
     const savedCart = localStorage.getItem("cart");
 
-    return savedCart ? JSON.parse(savedCart) : [];
+    return savedCart
+      ? JSON.parse(savedCart).map((item) => ({
+          ...item,
+          price:
+            typeof item.price === "string"
+              ? Number(item.price.replace("€", ""))
+              : item.price,
+        }))
+      : [];
   });
 
   useEffect(() => {
@@ -335,17 +344,7 @@ function App() {
 
       <About />
 
-      <section className="gallery" id="gallery">
-        <p className="small-title">Gallery</p>
-
-        <h2>Inside Sapore Italiano</h2>
-
-        <div className="gallery-grid">
-          <img src={margheritaImg} alt="Pizza" />
-          <img src={diavolaImg} alt="Pizza" />
-          <img src={prosciuttoImg} alt="Pizza" />
-        </div>
-      </section>
+      <Gallery />
 
       <section className="reviews">
         <p className="small-title">Reviews</p>
