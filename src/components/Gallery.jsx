@@ -8,9 +8,9 @@ function Gallery() {
       <p className="small-title">Gallery</p>
       <h2>Inside Sapore Italiano</h2>
       <div className="gallery-grid">
-        <img src={margheritaImg} alt="Pizza" />
-        <img src={diavolaImg} alt="Pizza" />
-        <img src={prosciuttoImg} alt="Pizza" />
+        <img src={margheritaImg} alt="Margherita pizza" />
+        <img src={diavolaImg} alt="Diavola pizza" />
+        <img src={prosciuttoImg} alt="Prosciutto pizza" />
       </div>
     </section>
   );

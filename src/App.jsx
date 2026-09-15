@@ -8,11 +8,8 @@ import PizzaCard from "./components/PizzaCard";
 import Featured from "./components/Featured";
 import OrderItem from "./components/OrderItem";
 import Gallery from "./components/Gallery";
+import Reviews from "./components/Reviews";
 import pizzas from "./data/pizzas";
-
-import margheritaImg from "./assets/margherita.jpg";
-import diavolaImg from "./assets/diavola.jpg";
-import prosciuttoImg from "./assets/prosciutto.jpg";
 
 function App() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -346,39 +343,7 @@ function App() {
 
       <Gallery />
 
-      <section className="reviews">
-        <p className="small-title">Reviews</p>
-        <h2>What our customers say</h2>
-
-        <div className="reviews-grid">
-          <div className="review-card">
-            <p>
-              Amazing pizza and great atmosphere. The best Italian restaurant in
-              Prague.
-            </p>
-
-            <h4>⭐ ⭐ ⭐ ⭐ ⭐</h4>
-
-            <span>John D.</span>
-          </div>
-
-          <div className="review-card">
-            <p>Fresh ingredients, friendly staff and authentic taste.</p>
-
-            <h4>⭐ ⭐ ⭐ ⭐ ⭐</h4>
-
-            <span>Maria K.</span>
-          </div>
-
-          <div className="review-card">
-            <p>I come here every week. Diavola is my favorite pizza.</p>
-
-            <h4>⭐ ⭐ ⭐ ⭐ ⭐</h4>
-
-            <span>Alex P.</span>
-          </div>
-        </div>
-      </section>
+      <Reviews />
 
       <section className="booking" id="booking">
         <p className="small-title">Reservation</p>
