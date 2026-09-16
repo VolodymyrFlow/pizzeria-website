@@ -2896,3 +2896,63 @@ Vocabulary: convert, property, literal string, rendering, refactoring, preserved
 - Understand each change before moving on.
 - Practice English explanations and correct mistakes.
 - Connect practical tasks to the vacancy requirements.
+
+## Coding Session 99 — Contact Component, Props, and Phone Link
+
+**Date:** September 16, 2026
+**Type:** Guided coding, independent exercises, and technical English
+
+### What I Did
+
+- Created the Contact component.
+- Moved the contact section out of App.jsx.
+- Passed the isOpen boolean from App to Contact through props.
+- Used conditional expressions to select the status text and CSS class.
+- Fixed the contact-grid class name and the spelling of “Address”.
+- Turned the phone number into a clickable tel: link.
+- Kept the displayed phone number readable with spaces.
+
+### What I Practised Independently
+
+- Explained how adding an object creates another review card through map().
+- Wrote an opening-hours condition for a hypothetical 10:00–22:00 schedule.
+- Attempted the phone link using standard HTML, then corrected it after review.
+- Explained the responsibilities of App and Contact in English.
+
+### What I Tested
+
+- Checked that the contact section appeared once with its information.
+- Tested the status using true and false props.
+- Restored <Contact isOpen={isOpen} /> after testing.
+- ESLint passed after the changes.
+- The production build passed after extracting Contact, before the phone-link change.
+
+### Key Lessons
+
+- App calculates isOpen; Contact receives it and displays the status.
+- isOpen is a variable containing a boolean, not an array.
+- > = includes the opening hour; < excludes the closing hour.
+- CSS class names must match exactly.
+- A link needs both a destination and visible text.
+- tel: identifies a telephone URI.
+- A native HTML link does not require a JavaScript click handler.
+- Keyboard focus shows which element is selected for keyboard interaction.
+
+### Verification Still Needed
+
+- Keyboard access and visible focus on the phone link were not clearly confirmed.
+- The opening-hours calculation uses the browser’s local time, not explicitly Prague time.
+
+### English Practice
+
+- “Everything works.”
+- “I created the Contact component.”
+- “It receives the isOpen value through props.”
+- “App calculates the status, and Contact displays it.”
+- “I added a phone link inside the p element.”
+
+### Next Steps
+
+- Finish the phone-link keyboard accessibility check.
+- Continue improving the website with small, independently attempted tasks.
+- Revisit props and conditional rendering without a prepared explanation.
