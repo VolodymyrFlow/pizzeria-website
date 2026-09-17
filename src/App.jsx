@@ -341,7 +341,6 @@ function App() {
       </section>
 
       <About />
-
       <Gallery />
 
       <Reviews />
@@ -352,7 +351,9 @@ function App() {
         <h2>Book a table</h2>
 
         <form className="booking-form" onSubmit={handleBookingSubmit}>
+          <label htmlFor="booking-name">Your name</label>
           <input
+            id="booking-name"
             type="text"
             placeholder="Your name"
             value={bookingName}

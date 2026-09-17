@@ -2956,3 +2956,67 @@ Vocabulary: convert, property, literal string, rendering, refactoring, preserved
 - Finish the phone-link keyboard accessibility check.
 - Continue improving the website with small, independently attempted tasks.
 - Revisit props and conditional rendering without a prepared explanation.
+
+## Coding Session 100 — Booking Form Labels
+
+**Date:** September 17, 2026
+**Type:** Guided HTML and React practice
+
+### What I Did
+
+- Added a visible “Your name” label to the booking form.
+- Connected the label to the input using matching htmlFor and id values.
+- Kept the existing bookingName state and onChange handler unchanged.
+
+### Code Added
+
+The label:
+
+<label htmlFor="booking-name">Your name</label>
+
+The input identifier:
+
+id="booking-name"
+
+### What I Reviewed
+
+- label provides a visible description of a form field.
+- htmlFor connects a label to an input with a matching id.
+- In JSX, htmlFor corresponds to the HTML for attribute.
+- Clicking a connected label focuses its input.
+- A placeholder is a hint inside an empty input, not a replacement for a visible label.
+- type="text" defines a text input.
+- value={bookingName} connects the displayed input value to React state.
+- onChange handles changes made by the user.
+- event.target.value contains the current input text.
+- setBookingName updates the state and requests a re-render.
+
+### Important Distinction
+
+- id identifies an HTML element.
+- bookingName is a React state variable.
+- Adding a label does not change the booking submission logic.
+
+### Verification Status
+
+- Confirmed that the label and matching input id were saved in App.jsx.
+- Clarified that the phone-link keyboard check had already been completed in the previous session.
+- Browser verification of the new label, layout checks, lint, and build remain to be done.
+
+### English Practice
+
+“Let’s start session 100.”
+
+“I added a visible label and connected it to the input using htmlFor and id.”
+
+### Next Steps
+
+- Check that clicking “Your name” focuses the correct input.
+- Check that entering text still updates the field correctly.
+- Add visible labels to the date, time, and guest-count fields.
+- Adjust the form layout for the labels and check mobile display.
+- Run lint and build.
+
+### Learning Preference
+
+Explain changes directly through the project’s actual code, without invented names or unrelated examples.
