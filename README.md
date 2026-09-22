@@ -3020,3 +3020,56 @@ id="booking-name"
 ### Learning Preference
 
 Explain changes directly through the project’s actual code, without invented names or unrelated examples.
+
+## Coding Session 101 — Visible Booking Form Labels
+
+**Date:** September 22, 2026
+**Type:** Guided practice and detailed code explanation
+
+### What I Did
+
+- Confirmed that clicking the “Your name” label focuses its input.
+- Added visible labels to the date, time, and guest-count fields.
+- Connected each label to its input using matching htmlFor and id values.
+- Removed the redundant aria-label attributes from those three inputs.
+- Fixed the initially empty guest-count label by adding “Number of guests”.
+- Preserved the existing state bindings, event handlers, and guest limits.
+
+### Field Connections
+
+- Your name: booking-name
+- Booking date: booking-date
+- Booking time: booking-time
+- Number of guests: booking-guests
+
+### What I Reviewed
+
+- label provides a visible field description.
+- htmlFor connects the label to an input with a matching id.
+- id identifies an HTML element; it is not a React state variable.
+- value connects the displayed input value to React state.
+- onChange receives a function that handles user changes.
+- event.target.value provides the current input value as a string.
+- State setter functions update React state and request a re-render.
+- min and max define numeric constraints but do not make a field required.
+- Semantic label connections do not control the visual layout.
+
+### Verification Status
+
+- Confirmed the name-label interaction in the browser.
+- The mentor checked the saved code for all four label/input pairs.
+- Browser interaction checks for the new labels remain to be completed.
+- Lint and build were not run during this session.
+- Responsive label styling is not finished.
+
+### Next Session
+
+- Wrap each label and input together in a field container.
+- Style each label above its input.
+- Check all label interactions and mobile layout.
+- Run lint and build.
+- Practise explaining the changes in English without a prepared answer.
+
+### Session Note
+
+Ended the session after completing the label changes and reviewing the code. Layout work was deliberately left for the next session.

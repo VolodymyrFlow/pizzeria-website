@@ -359,24 +359,24 @@ function App() {
             value={bookingName}
             onChange={(event) => setBookingName(event.target.value)}
           />
-
+          <label htmlFor="booking-date">Booking date</label>
           <input
             type="date"
-            aria-label="Booking date"
+            id="booking-date"
             value={bookingDate}
             onChange={(event) => setBookingDate(event.target.value)}
           />
-
+          <label htmlFor="booking-time">Booking time</label>
           <input
             type="time"
-            aria-label="Booking time"
+            id="booking-time"
             value={bookingTime}
             onChange={(event) => setBookingTime(event.target.value)}
           />
-
+          <label htmlFor="booking-guests">Number of guests</label>
           <input
             type="number"
-            aria-label="Number of guests"
+            id="booking-guests"
             min="1"
             max="12"
             value={bookingGuests}
