@@ -3073,3 +3073,73 @@ Explain changes directly through the project’s actual code, without invented n
 ### Session Note
 
 Ended the session after completing the label changes and reviewing the code. Layout work was deliberately left for the next session.
+
+## Coding Session 102 — Responsive Form, SEO Basics, and Cart Calculation
+
+**Date:** September 23, 2026
+**Type:** Guided coding, debugging, and technical English
+
+### What I Did
+
+- Wrapped each booking label and input in a booking-field container.
+- Kept the submit button outside the individual field containers.
+- Used Flexbox inside each group to place the label above its input.
+- Initially used a wrapping Flexbox layout for the form.
+- Identified uneven row alignment from a browser screenshot.
+- Replaced the form layout with a two-column CSS Grid.
+- Placed the submit button on a separate row and centered it.
+- Added a one-column layout for viewports up to 768px wide.
+- Updated the page title to “Sapore Italiano | Pizzeria Website Demo”.
+- Added a meta description that clearly identifies the site as a demo.
+- Created calculateOrderTotal.js to calculate the cart total separately from React.
+
+### What I Tested
+
+- Reviewed the wide layout using screenshots.
+- Checked the narrow layout in the browser.
+- Confirmed that labels focus their corresponding fields.
+- Confirmed that date, time, and guest-count inputs still work.
+- ESLint passed after the form changes.
+- The production build passed after the layout and metadata changes.
+
+### What I Reviewed
+
+- Why wrapped Flexbox rows can have different horizontal alignment.
+- How Grid provides shared columns across rows.
+- How Grid and Flexbox can be used together.
+- How media queries change the layout at a breakpoint.
+- The difference between title, h1, and meta description.
+- How reduce() accumulates a total.
+- The difference between the callback’s return and the outer function’s return.
+- Why calculation functions should return numbers without display formatting.
+
+### New Utility Function
+
+Created src/utils/calculateOrderTotal.js.
+
+It accepts an array of cart items and returns the sum of:
+item.price \* item.quantity
+
+It does not modify the cart or depend on React or localStorage.
+
+### Work Still Pending
+
+- The utility has been reviewed in source code but not automatically tested.
+- App.jsx still uses its existing inline total calculation.
+- Automated tests and integration are the next steps.
+- The new function and its return flow need further independent practice.
+
+### English Practice
+
+- “Everything looks good.”
+- “I changed the booking form layout from Flexbox to Grid.”
+- “We need to edit the title element.”
+- “The meta description provides a short summary of the page.”
+
+### Next Session
+
+- Revisit the two functions and their return statements.
+- Test an empty cart, quantities, and multiple cart items.
+- Integrate calculateOrderTotal into App.jsx.
+- Run tests, lint, and build.
+- Explain the change in English without a prepared answer.

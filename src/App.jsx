@@ -351,38 +351,45 @@ function App() {
         <h2>Book a table</h2>
 
         <form className="booking-form" onSubmit={handleBookingSubmit}>
-          <label htmlFor="booking-name">Your name</label>
-          <input
-            id="booking-name"
-            type="text"
-            placeholder="Your name"
-            value={bookingName}
-            onChange={(event) => setBookingName(event.target.value)}
-          />
-          <label htmlFor="booking-date">Booking date</label>
-          <input
-            type="date"
-            id="booking-date"
-            value={bookingDate}
-            onChange={(event) => setBookingDate(event.target.value)}
-          />
-          <label htmlFor="booking-time">Booking time</label>
-          <input
-            type="time"
-            id="booking-time"
-            value={bookingTime}
-            onChange={(event) => setBookingTime(event.target.value)}
-          />
-          <label htmlFor="booking-guests">Number of guests</label>
-          <input
-            type="number"
-            id="booking-guests"
-            min="1"
-            max="12"
-            value={bookingGuests}
-            onChange={(event) => setBookingGuests(event.target.value)}
-          />
-
+          <div className="booking-field">
+            <label htmlFor="booking-name">Your name</label>
+            <input
+              id="booking-name"
+              type="text"
+              placeholder="Your name"
+              value={bookingName}
+              onChange={(event) => setBookingName(event.target.value)}
+            />
+          </div>
+          <div className="booking-field">
+            <label htmlFor="booking-date">Booking date</label>
+            <input
+              type="date"
+              id="booking-date"
+              value={bookingDate}
+              onChange={(event) => setBookingDate(event.target.value)}
+            />
+          </div>
+          <div className="booking-field">
+            <label htmlFor="booking-time">Booking time</label>
+            <input
+              type="time"
+              id="booking-time"
+              value={bookingTime}
+              onChange={(event) => setBookingTime(event.target.value)}
+            />
+          </div>
+          <div className="booking-field">
+            <label htmlFor="booking-guests">Number of guests</label>
+            <input
+              type="number"
+              id="booking-guests"
+              min="1"
+              max="12"
+              value={bookingGuests}
+              onChange={(event) => setBookingGuests(event.target.value)}
+            />
+          </div>
           <button type="submit">Send request</button>
         </form>
 
