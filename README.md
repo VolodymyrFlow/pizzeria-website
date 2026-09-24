@@ -3143,3 +3143,41 @@ It does not modify the cart or depend on React or localStorage.
 - Integrate calculateOrderTotal into App.jsx.
 - Run tests, lint, and build.
 - Explain the change in English without a prepared answer.
+
+## Coding Session 103 — Understanding Automated Tests
+
+**Date:** September 24, 2026
+**Type:** JavaScript practice + English
+
+### What I worked on
+
+- Reviewed the calculateOrderTotal function created with Devin
+- Reviewed two tests using node:test and node:assert/strict
+- Understood how reduce() accumulates the total price
+- Learned why reduce((sum, item) => ...) contains two opening parentheses
+- Understood the difference between the inner and outer return
+- Traced a calculation manually and correctly predicted the result: 40
+- Practiced explaining the function in English
+
+### Test cases reviewed
+
+- Multiple cart items should return 30.5
+- An empty cart should return 0
+
+### Key lesson
+
+The first parenthesis opens the reduce() call.
+The second opens the arrow function's parameter list.
+
+The inner return provides the next accumulated value.
+The outer return returns the final total from calculateOrderTotal.
+
+### English practice
+
+The function returns 40 because it multiplies each price
+by the quantity, then adds the result to the running total.
+
+### Next steps
+
+- Run the tests and read their output
+- Write an additional test independently
