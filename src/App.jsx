@@ -11,6 +11,8 @@ import Gallery from "./components/Gallery";
 import Reviews from "./components/Reviews";
 import Contact from "./components/Contact";
 import pizzas from "./data/pizzas";
+import calculateOrderTotal from "./utils/calculateOrderTotal.js";
+import calculateItemCount from "./calculateItemCount.js";
 
 function App() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -147,11 +149,9 @@ function App() {
     setOrderItems(updatedItems);
   }
 
-  const totalPrice = orderItems.reduce((sum, item) => {
-    return sum + item.price * item.quantity;
-  }, 0);
+  const totalPrice = calculateOrderTotal(orderItems);
 
-  const totalItems = orderItems.reduce((sum, item) => sum + item.quantity, 0);
+  const totalItems = calculateItemCount(orderItems);
 
   function handleCheckoutSubmit(event) {
     event.preventDefault();

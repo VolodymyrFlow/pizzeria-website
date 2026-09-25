@@ -3181,3 +3181,71 @@ by the quantity, then adds the result to the running total.
 
 - Run the tests and read their output
 - Write an additional test independently
+
+## Coding Session 104 — Cart Calculation Tests and Item Count
+
+**Date:** September 25, 2026
+**Type:** Guided coding, independent practice, debugging, and technical English
+
+### What I Did
+
+- Added a test for calculating the price of one cart item with multiple pizzas.
+- Connected calculateOrderTotal to the totalPrice calculation in App.jsx.
+- Practised making a test fail by changing its expected result.
+- Restored the correct expectation and reran the tests.
+- Added an npm test script using Node’s built-in test runner.
+- Created calculateItemCount to sum quantities across cart items.
+- Added tests for an empty cart and multiple item quantities.
+- Corrected the item-count function to add quantities instead of calculating prices.
+- Fixed a missing .js extension in a test import.
+
+### Test Cases
+
+calculateOrderTotal:
+
+- Multiple cart items produce the expected total.
+- An empty cart returns 0.
+- A price of 9.5 with quantity 3 returns 28.5.
+
+calculateItemCount:
+
+- An empty cart returns 0.
+- Quantities 2 and 1 produce a total count of 3.
+
+### What I Learned
+
+- Separate calculation functions can be tested without React or a browser.
+- Tests compare actual results with expected results.
+- A failing test provides information; it does not always mean the application code is wrong.
+- Module-loading errors can prevent tests from running.
+- Relative ES-module imports in Node.js need explicit file extensions.
+- Cart item count and cart price use different calculations.
+- npm scripts provide short names for project commands.
+- Lint checks configured code rules.
+- Build prepares production files but does not deploy the website.
+
+### Verification
+
+- Reported five passing tests after fixing the import.
+- Reported successful lint and build checks during the total-price integration.
+- Final integration and browser verification of calculateItemCount still need confirmation.
+
+### Useful Commands
+
+npm test
+npm run lint
+npm run build
+
+### English Practice
+
+- “The checks passed.”
+- “When I run npm test, it runs the tests.”
+- “We separated the calculation to make it easier to test.”
+- “The import was missing the .js extension.”
+
+### Next Steps
+
+- Confirm calculateItemCount is imported and used for totalItems in App.jsx.
+- Confirm lint and build pass after that integration.
+- Check the displayed quantity and price while increasing and decreasing items.
+- Practise explaining the two calculation functions without a prepared answer.

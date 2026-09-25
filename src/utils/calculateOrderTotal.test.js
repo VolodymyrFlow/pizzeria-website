@@ -20,3 +20,10 @@ test("returns zero for an empty cart", () => {
 
   assert.equal(results, 0);
 });
+
+test("calculates the total for a single item with quantity", () => {
+  const items = [{ price: 9.5, quantity: 3 }];
+  const results = calculateOrderTotal(items);
+
+  assert.equal(results, 28.5);
+});
