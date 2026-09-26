@@ -12,7 +12,7 @@ import Reviews from "./components/Reviews";
 import Contact from "./components/Contact";
 import pizzas from "./data/pizzas";
 import calculateOrderTotal from "./utils/calculateOrderTotal.js";
-import calculateItemCount from "./calculateItemCount.js";
+import calculateItemCount from "./utils/calculateItemCount.js";
 
 function App() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -323,7 +323,13 @@ function App() {
                   />
                 )}
 
-                <button type="submit" className="checkout-button">
+                <button
+                  type="submit"
+                  className="checkout-button"
+                  disabled={
+                    checkoutName.trim() === "" || checkoutPhone.trim() === ""
+                  }
+                >
                   Place order
                 </button>
 

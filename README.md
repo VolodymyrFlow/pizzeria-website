@@ -3249,3 +3249,44 @@ npm run build
 - Confirm lint and build pass after that integration.
 - Check the displayed quantity and price while increasing and decreasing items.
 - Practise explaining the two calculation functions without a prepared answer.
+
+## Coding Session 105 — Disabling the Checkout Button
+
+**Date:** September 26, 2026
+**Type:** Guided coding, debugging, and technical English
+
+### What I Worked On
+
+- Wrote the calculateItemCount call for totalItems in App.jsx
+- Practised using the disabled attribute on a button
+- Checked for empty strings using strict equality
+- Used trim() to handle inputs containing only whitespace
+- Combined name and phone checks using the OR operator
+- Applied the condition to the Place order button
+- Reviewed the difference between a CSS class and a state variable
+- Diagnosed an unresolved import and reviewed relative file paths
+
+### Key Lessons
+
+- disabled={true} makes a button unavailable
+- trim() returns a new string without leading or trailing whitespace
+- The OR operator returns true if at least one of our conditions is true
+- checkoutName stores the name; checkout-button is a CSS class
+- Relative import paths start from the file containing the import
+- Disabling a button does not replace validation in the submit handler
+
+### Verification Status
+
+- Import correction and browser checks still need confirmation
+- Test, lint, and build results were not confirmed during this session
+
+### Next Steps
+
+- Confirm the calculateItemCount import matches its file location
+- Check Place order with empty and filled fields
+- Verify cart quantities and totals
+- Run npm test, npm run lint, and npm run build
+
+### English Practice
+
+The button is disabled because the phone field is empty after trimming.
