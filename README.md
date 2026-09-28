@@ -3291,7 +3291,7 @@ npm run build
 
 The button is disabled because the phone field is empty after trimming.
 
-## Coding Session 105 — Opening-Hours Tests and Prague Time
+## Coding Session 106 — Opening-Hours Tests and Prague Time
 
 **Date:** September 28, 2026
 **Type:** Guided coding, automated testing, debugging, and technical English
