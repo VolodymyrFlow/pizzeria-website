@@ -3290,3 +3290,62 @@ npm run build
 ### English Practice
 
 The button is disabled because the phone field is empty after trimming.
+
+## Coding Session 105 — Opening-Hours Tests and Prague Time
+
+**Date:** September 28, 2026
+**Type:** Guided coding, automated testing, debugging, and technical English
+
+### What I Did
+
+- Created isRestaurantOpen(hour) to check the restaurant’s opening hours.
+- Returned true for hours from 11 inclusive to 23 exclusive.
+- Added tests for hours 10, 11, 22, and 23.
+- Fixed a syntax error caused by writing “funtion” instead of “function”.
+- Connected isRestaurantOpen to the status calculation in App.jsx.
+- Started getPragueHour(date) to obtain the hour in Prague.
+- Used Intl.DateTimeFormat with the Europe/Prague time zone.
+- Added timezone tests for winter, summer, and midnight.
+
+### What I Reviewed
+
+- A boolean represents true or false.
+- An expected false value does not mean that a test should fail.
+- Boundary tests check behavior around opening and closing times.
+- getHours() uses the browser’s local time zone.
+- Intl.DateTimeFormat can represent a date in a specified time zone.
+- format() returns text; Number() converts the hour text into a number.
+- A trailing Z in an ISO date string indicates UTC.
+- Strict assertions distinguish numbers from strings.
+
+### Debugging Practice
+
+- Fixed a missing .js extension in a relative test import.
+- Fixed calls to getPrague by using the imported name getPragueHour.
+- Identified an invalid date containing the letter O instead of zero:
+  TO8 needed to become T08.
+- Reviewed switching the assertion import to node:assert/strict.
+
+### Verification Status
+
+- Reported passing opening-hours tests and successful lint/build checks.
+- The last shared full test run showed 12 tests: 9 passed and 3 failed.
+- The timezone failures were investigated.
+- A successful rerun after the latest corrections has not yet been confirmed.
+- getPragueHour has not yet been connected to App.jsx.
+- The application still needs the Prague-time integration.
+
+### English Practice
+
+- “The test passed.”
+- “Both checks passed.”
+- “The function receives an hour and returns a boolean.”
+- “The format method returns a string using the formatter’s settings.”
+
+### Next Session
+
+- Confirm the corrected date string and strict assertion import.
+- Run npm test and resolve any remaining failures.
+- Integrate getPragueHour into App.jsx.
+- Run lint and build, then check the restaurant status.
+- Explain the flow: Date → Prague hour → boolean → displayed status.

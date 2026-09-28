@@ -13,6 +13,7 @@ import Contact from "./components/Contact";
 import pizzas from "./data/pizzas";
 import calculateOrderTotal from "./utils/calculateOrderTotal.js";
 import calculateItemCount from "./utils/calculateItemCount.js";
+import isRestaurantOpen from "./utils/isRestaurantOpen.js";
 
 function App() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -105,7 +106,7 @@ function App() {
   }
 
   const currentHour = new Date().getHours();
-  const isOpen = currentHour >= 11 && currentHour < 23;
+  const isOpen = isRestaurantOpen(currentHour);
 
   function handleAddToOrder(pizza) {
     setOrderSuccessMessage("");
