@@ -14,6 +14,7 @@ import pizzas from "./data/pizzas";
 import calculateOrderTotal from "./utils/calculateOrderTotal.js";
 import calculateItemCount from "./utils/calculateItemCount.js";
 import isRestaurantOpen from "./utils/isRestaurantOpen.js";
+import getPragueHour from "./utils/getPragueHour.js";
 
 function App() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -105,7 +106,7 @@ function App() {
     setBookingGuests("2");
   }
 
-  const currentHour = new Date().getHours();
+  const currentHour = getPragueHour(new Date());
   const isOpen = isRestaurantOpen(currentHour);
 
   function handleAddToOrder(pizza) {

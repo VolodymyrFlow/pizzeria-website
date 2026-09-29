@@ -3349,3 +3349,75 @@ The button is disabled because the phone field is empty after trimming.
 - Integrate getPragueHour into App.jsx.
 - Run lint and build, then check the restaurant status.
 - Explain the flow: Date → Prague hour → boolean → displayed status.
+
+## Coding Session 107 — Prague Time Integration and Design Review
+
+**Date:** September 29, 2026
+**Type:** Guided coding, technical English, and visual design review
+
+### Prague Time
+
+- Reported passing tests after the previous timezone fixes.
+- Worked on connecting getPragueHour to App.jsx.
+- Replaced the browser-local hour calculation with:
+  getPragueHour(new Date())
+- Kept isRestaurantOpen responsible for checking opening hours.
+- Kept Contact responsible for displaying the resulting status.
+- Explained why the restaurant’s time zone matters more than the visitor’s time zone.
+
+### Data Flow
+
+Current moment → Prague hour → opening-hours check → displayed status.
+
+### Verification Status
+
+- Tests were reported as passing.
+- App integration was reported as done.
+- Separate final lint/build and browser results were not provided.
+- Automatic status updates while the page remains open are still pending.
+
+### Design Review
+
+Reviewed desktop screenshots of the website.
+
+Identified improvements:
+
+- Add a strong pizza image to the main hero section.
+- Align prices and action buttons across menu cards.
+- Make button and link styles more consistent.
+- Reduce repetitive sections and excessive empty space.
+- Give the gallery content a purpose distinct from the menu.
+- Clearly identify demonstration content.
+- Optimize large images before deployment.
+
+Mobile design was not evaluated from these screenshots.
+
+### Agreed Design Direction
+
+A modern Italian pizzeria with:
+
+- A warm cream background.
+- A deep burgundy accent.
+- Clear typography.
+- Strong food photography.
+- Consistent spacing and components.
+- Accessible, responsive interactions.
+
+### Hero Redesign — Prepared, Not Yet Verified
+
+- Reviewed the current Hero component and related styles.
+- Identified duplicate Hero style rules.
+- Prepared new JSX with separate content and image containers.
+- Proposed a shorter headline and two actions:
+  View menu and Book a table.
+- Planned to use an existing pizza image initially.
+
+The new Hero markup has not yet been confirmed as saved.
+The corresponding CSS changes have not been implemented.
+
+### Next Session
+
+- Confirm the new Hero markup.
+- Update existing Hero CSS for desktop and mobile layouts.
+- Check screenshots and anchor navigation.
+- Optimize the hero image before publication.

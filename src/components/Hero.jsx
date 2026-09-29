@@ -1,18 +1,34 @@
+import heroPizza from "../assets/diavola.jpg";
+
 function Hero() {
   return (
     <section className="hero" id="home">
-      <p className="small-title">Authentic Italian Pizzeria</p>
+      <div className="hero-content">
+        <p className="small-title">Italian pizza in Prague</p>
 
-      <h1>Wood-fired pizza, fresh ingredients, real Italian taste.</h1>
+        <h1>
+          Wood-fired pizza. <span>Real Italian taste.</span>
+        </h1>
 
-      <p className="hero-text">
-        A cozy Italian restaurant inspired by Napoli, created for people who
-        love pizza, pasta, wine and warm atmosphere.
-      </p>
+        <p className="hero-text">
+          Fresh dough, generous toppings, and a warm welcome. Discover our menu
+          and find your next favourite pizza.
+        </p>
 
-      <a href="#menu" className="cta-button">
-        View Menu
-      </a>
+        <div className="hero-actions">
+          <a href="#menu" className="cta-button">
+            View menu
+          </a>
+
+          <a href="#booking" className="hero-secondary">
+            Book a table
+          </a>
+        </div>
+      </div>
+
+      <div className="hero-visual">
+        <img src={heroPizza} alt="Diavola pizza with spicy salami" />
+      </div>
     </section>
   );
 }
