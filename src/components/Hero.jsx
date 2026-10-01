@@ -1,4 +1,4 @@
-import heroPizza from "../assets/diavola.jpg";
+import heroPizza from "../assets/margherita.jpg";
 
 function Hero() {
   return (
@@ -27,7 +27,10 @@ function Hero() {
       </div>
 
       <div className="hero-visual">
-        <img src={heroPizza} alt="Diavola pizza with spicy salami" />
+        <img
+          src={heroPizza}
+          alt="Margherita pizza with mozzarella and fresh basil"
+        />
       </div>
     </section>
   );

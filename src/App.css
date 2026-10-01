@@ -1168,18 +1168,68 @@ body {
 .hero {
   position: relative;
   isolation: isolate;
-  min-height: 100vh;
+  min-height: min(820px, 100svh);
   max-width: 1180px;
   margin: 0 auto;
-  padding: 180px 24px 110px;
+  padding: 150px 40px 88px;
 
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+
+  text-align: left;
+  background: transparent;
+}
+
+.hero-content,
+.hero-visiual {
+  min-width: 0;
+}
+
+.hero-visual img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 32px;
+  box-shadow: var(--modern-shadow);
+}
+
+.hero-actions {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+.hero-actions a {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 48px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+}
 
-  text-align: center;
+.hero-secondary {
+  border: 1px solid var(--modern-border);
   background: transparent;
+  color: var(--modern-text);
+}
+
+.hero-secondary:hover {
+  background: var(--modern-surface);
+  border-color: currentColor;
+}
+
+.hero-actions a:focus-visible {
+  outline: 3px solid var(--modern-primary);
+  outline-offset: 4px;
 }
 
 .hero::before {
@@ -1206,6 +1256,8 @@ body {
   border-radius: 999px;
   background: var(--modern-surface);
   color: var(--modern-muted);
+  width: fit-content;
+  max-width: 100%;
 
   font-family: "Inter", sans-serif;
   font-size: 12px;
@@ -1217,16 +1269,19 @@ body {
 }
 
 .hero h1 {
-  max-width: 900px;
-  margin-bottom: 28px;
-
+  max-width: 600px;
+  margin: 0 0 24px;
   font-family: "Bricolage Grotesque", sans-serif;
-  font-size: clamp(52px, 7vw, 88px);
+  font-size: clamp(40px, 4.7vw, 64px);
   font-weight: 600;
-  line-height: 0.98;
-  letter-spacing: -4px;
+  line-height: 1.05;
+  letter-spacing: -2px;
   color: var(--modern-text);
   text-wrap: balance;
+}
+
+.hero h1 span {
+  display: block;
 }
 
 .hero-text {
@@ -1271,20 +1326,70 @@ body {
 @media (max-width: 900px) {
   .navbar {
     padding: 10px 14px;
+    flex-direction: row;
+    gap: 12px;
+    text-align: left;
   }
 
   .nav-links {
     display: none;
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    padding: 12px;
+    border: 1px solid var(--modern-border);
+    border-radius: 20px;
+    background: var(--modern-card);
+    box-shadow: var(--modern-shadow);
+    max-height: calc(100dvh - 100px);
+    overflow-y: auto;
+  }
+
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 10px 14px;
   }
 
   .hero {
-    min-height: 90vh;
-    padding: 150px 22px 80px;
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 136px 24px 64px;
+    gap: 32px;
   }
 
   .hero h1 {
     font-size: clamp(46px, 13vw, 68px);
     letter-spacing: -2.5px;
+  }
+  .menu-toggle {
+    display: none;
+    flex-shrink: 0;
+    min-height: 44px;
+    padding: 0 12px;
+    border: 1px solid var(--modern-border);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--modern-text);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .theme-button {
+    margin-left: auto;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 

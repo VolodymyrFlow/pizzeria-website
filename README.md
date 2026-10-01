@@ -3421,3 +3421,48 @@ The corresponding CSS changes have not been implemented.
 - Update existing Hero CSS for desktop and mobile layouts.
 - Check screenshots and anchor navigation.
 - Optimize the hero image before publication.
+
+## Coding Session 108 — Hero Redesign
+
+**Date:** September 30, 2026
+**Type:** Guided React and CSS practice
+
+### What I Did
+
+- Prepared the new Hero component with separate content and image containers.
+- Added two actions: View menu and Book a table.
+- Changed the hero image from Diavola to Margherita.
+- Updated the image alternative text.
+- Worked on a two-column desktop layout using CSS Grid.
+- Added a single-column layout for narrower screens.
+- Controlled the image size using aspect-ratio and object-fit.
+
+### Styling Work
+
+- Reviewed a smaller, responsive heading size using clamp().
+- Used a block-level span to separate the headline phrases.
+- Worked on fitting the introductory badge to its content.
+- Prepared consistent sizing for both hero links.
+- Reviewed secondary-link, hover, and keyboard-focus styles.
+
+### What I Learned
+
+- A selector determines which elements receive CSS declarations.
+- Grid controls the relationship between the text and image columns.
+- object-fit: cover fills an image area without stretching the image.
+- A media query applies rules under specified conditions.
+- margin creates outside spacing; padding creates inside spacing.
+- CSS variables reuse palette values.
+- focus-visible helps indicate keyboard focus.
+
+### Verification Status
+
+- Shared an intermediate desktop screenshot.
+- Final styling and mobile review continued in session 109.
+- No lint or build run was confirmed during this session.
+
+### Remaining Work
+
+- Review the final desktop and narrow-screen composition.
+- Fix any mobile navigation issues.
+- Optimize the large Margherita image before publication.
