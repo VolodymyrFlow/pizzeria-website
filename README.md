@@ -3466,3 +3466,66 @@ The corresponding CSS changes have not been implemented.
 - Review the final desktop and narrow-screen composition.
 - Fix any mobile navigation issues.
 - Optimize the large Margherita image before publication.
+
+## Coding Session 110 — Mobile Navigation
+
+**Date:** October 2, 2026  
+**Type:** Guided React and CSS practice
+
+### What I Did
+
+- Fixed the class name from `is open` to `is-open`.
+- Hid the Menu button on screens wider than 900px.
+- Displayed the Menu button on screens up to 900px.
+- Reviewed how `useState` opens and closes the menu.
+- Learned how conditional classes connect React with CSS.
+- Reviewed `aria-expanded` and `aria-controls`.
+
+### Main Logic
+
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    onClick={() =>
+      setMenuOpen((previousValue) => !previousValue)
+    }
+
+    className={
+      menuOpen ? "nav-links is-open" : "nav-links"
+    }
+
+The Menu button is hidden by default:
+
+    .menu-toggle {
+      display: none;
+    }
+
+It appears on narrow screens:
+
+    @media (max-width: 900px) {
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-links.is-open {
+        display: flex;
+      }
+    }
+
+### What I Learned
+
+- React class names must match CSS selectors exactly.
+- `false` means the menu is closed.
+- `true` means the menu is open.
+- `!` changes a boolean to its opposite value.
+- State changes cause React to render the component again.
+- Media queries apply CSS under specified conditions.
+
+### Next Steps
+
+- Close the menu after selecting a navigation link.
+- Test different screen widths.
+- Run test, lint, and build checks.

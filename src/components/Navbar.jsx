@@ -25,7 +25,7 @@ export default function Navbar({ darkMode, onToggleTheme }) {
 
       <div
         id="main-navigation"
-        className={menuOpen ? "nav-links is open" : "nav-links"}
+        className={menuOpen ? "nav-links is-open" : "nav-links"}
       >
         <a href="#home">Home</a>
         <a href="#menu">Menu</a>

@@ -1323,6 +1323,10 @@ body {
 
 /* Redesign mobile overrides */
 
+.menu-toggle {
+  display: none;
+}
+
 @media (max-width: 900px) {
   .navbar {
     padding: 10px 14px;
