@@ -3529,3 +3529,45 @@ It appears on narrow screens:
 - Close the menu after selecting a navigation link.
 - Test different screen widths.
 - Run test, lint, and build checks.
+
+## Coding Session 111 — Closing the Mobile Menu
+
+**Date:** October 3, 2026  
+**Type:** Guided React practice and technical English
+
+### What I Did
+
+- Created a named function for closing the mobile menu.
+- Used `setMenuOpen(false)` to close it.
+- Connected the function to navigation links with `onClick`.
+- Confirmed that the menu closes after selecting a link.
+- Reviewed the difference between passing and calling a function.
+
+### Main Code
+
+    const handleNavLinkClick = () => {
+      setMenuOpen(false);
+    };
+
+    <a href="#home" onClick={handleNavLinkClick}>
+      Home
+    </a>
+
+### What I Learned
+
+- The toggle button changes the state to its opposite value.
+- A navigation link always sets `menuOpen` to `false`.
+- `onClick={handleNavLinkClick}` passes a function to React.
+- `onClick={handleNavLinkClick()}` would call it immediately.
+- One handler can be reused by multiple links.
+
+### Verification
+
+- The Home link was tested successfully.
+- The mobile menu closed after the link was selected.
+- Test, lint, and build checks were not confirmed.
+
+### Next Steps
+
+- Test every navigation link.
+- Run `npm test`, `npm run lint`, and `npm run build`.

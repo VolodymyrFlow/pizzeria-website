@@ -1,6 +1,9 @@
 import { useState } from "react";
 export default function Navbar({ darkMode, onToggleTheme }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const handleNavLinkClick = () => {
+    setMenuOpen(false);
+  };
   return (
     <nav className="navbar">
       <h2>Sapore Italiano</h2>
@@ -27,13 +30,27 @@ export default function Navbar({ darkMode, onToggleTheme }) {
         id="main-navigation"
         className={menuOpen ? "nav-links is-open" : "nav-links"}
       >
-        <a href="#home">Home</a>
-        <a href="#menu">Menu</a>
-        <a href="#about">About</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-        <a href="#featured">Special</a>
-        <a href="#booking">Booking</a>
+        <a href="#home" onClick={handleNavLinkClick}>
+          Home
+        </a>
+        <a href="#menu" onClick={handleNavLinkClick}>
+          Menu
+        </a>
+        <a href="#about" onClick={handleNavLinkClick}>
+          About
+        </a>
+        <a href="#gallery" onClick={handleNavLinkClick}>
+          Gallery
+        </a>
+        <a href="#contact" onClick={handleNavLinkClick}>
+          Contact
+        </a>
+        <a href="#featured" onClick={handleNavLinkClick}>
+          Special
+        </a>
+        <a href="#booking" onClick={handleNavLinkClick}>
+          Booking
+        </a>
       </div>
     </nav>
   );
