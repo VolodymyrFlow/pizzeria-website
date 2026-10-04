@@ -3571,3 +3571,40 @@ It appears on narrow screens:
 
 - Test every navigation link.
 - Run `npm test`, `npm run lint`, and `npm run build`.
+
+## Coding Session 112 — Menu Cards and Cart Navigation
+
+Сесія 112 — Картки меню та навігація до кошика
+Lekce programování 112 — Karty nabídky a navigace do košíku
+
+**Date / Дата / Datum:** 2026-10-04
+
+### What I Did / Що зробив / Co jsem udělal
+
+- Added a column Flexbox layout and automatic margins to align card footers.
+  Додав вертикальний Flexbox і автоматичні відступи для вирівнювання нижніх блоків карток.
+  Přidal jsem sloupcové rozložení pomocí Flexboxu a automatické vnější odsazení pro zarovnání spodních částí karet.
+
+- Made the order buttons full width.
+  Зробив кнопки замовлення на всю доступну ширину.
+  Nastavil jsem tlačítka objednání tak, aby zabírala celou dostupnou šířku.
+
+- Reviewed passing totalItems to Navbar and connecting a Cart link to the order section.
+  Розібрав передавання totalItems у Navbar та підключення посилання на кошик.
+  Prošel jsem předávání totalItems do komponenty Navbar a propojení odkazu Cart se sekcí objednávky.
+
+### Verification / Перевірка / Ověření
+
+- Reported successful lint and build checks.
+  Повідомив про успішні перевірки lint і build.
+  Uvedl jsem, že kontroly lint a build proběhly úspěšně.
+
+- Cart-link implementation and browser verification still need confirmation.
+  Додавання посилання на кошик і перевірка в браузері ще потребують підтвердження.
+  Doplnění odkazu na košík a ověření v prohlížeči zatím nebyly potvrzeny.
+
+### Next Steps / Наступні кроки / Další kroky
+
+- Finish and test the Cart link and its counter.
+  Завершити та перевірити посилання на кошик і його лічильник.
+  Dokončit a otestovat odkaz na košík a jeho počítadlo.

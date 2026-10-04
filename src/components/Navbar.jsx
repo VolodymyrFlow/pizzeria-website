@@ -1,5 +1,5 @@
 import { useState } from "react";
-export default function Navbar({ darkMode, onToggleTheme }) {
+export default function Navbar({ darkMode, onToggleTheme, totalItems }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const handleNavLinkClick = () => {
     setMenuOpen(false);
@@ -35,6 +35,9 @@ export default function Navbar({ darkMode, onToggleTheme }) {
         </a>
         <a href="#menu" onClick={handleNavLinkClick}>
           Menu
+        </a>
+        <a href="#order" onClick={handleNavLinkClick}>
+          Cart ({totalItems})
         </a>
         <a href="#about" onClick={handleNavLinkClick}>
           About

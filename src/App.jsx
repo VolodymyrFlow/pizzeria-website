@@ -186,6 +186,7 @@ function App() {
       <Navbar
         darkMode={darkMode}
         onToggleTheme={() => setDarkMode(!darkMode)}
+        totalItems={totalItems}
       />
 
       <Hero />
@@ -249,7 +250,7 @@ function App() {
         </div>
       </section>
 
-      <section className="order-summary">
+      <section className="order-summary" id="order">
         <p className="small-title">Your Order</p>
 
         <h2>Order Summary</h2>
