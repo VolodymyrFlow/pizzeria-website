@@ -3608,3 +3608,73 @@ Lekce programování 112 — Karty nabídky a navigace do košíku
 - Finish and test the Cart link and its counter.
   Завершити та перевірити посилання на кошик і його лічильник.
   Dokončit a otestovat odkaz na košík a jeho počítadlo.
+  ## Coding Session 113 — Image Optimization and Form Usability
+
+**Date:** October 5, 2026
+**Type:** Guided optimization, debugging, browser diagnostics, and English practice
+
+### What I Did
+
+- Confirmed that the Cart link and counter were working.
+- Optimized the Margherita, Diavola, and Prosciutto images.
+- Updated image imports to use the new .webp files.
+- Investigated Vite import-resolution errors.
+- Identified a double-extension filename: margherita.webp.jpg.
+- Checked image requests and resource sizes in the browser’s Network tab.
+- Updated the Cart label to hide the counter when the cart is empty.
+- Reviewed autocomplete attributes for booking and checkout fields.
+
+### Image Optimization Results
+
+Resource sizes shown in the Network tab:
+
+- Margherita: 128.09 KB
+- Diavola: 323.42 KB
+- Prosciutto: 279.63 KB
+
+Combined image size:
+
+- Before: approximately 11.5 MB
+- After: approximately 731 KB
+
+This is approximately 94% less image data.
+It is not a measurement of overall page-speed improvement.
+
+### What I Learned
+
+- Large image files increase the amount of data the browser downloads.
+- Image dimensions, compression quality, and format affect file size.
+- Renaming a file does not convert its image format.
+- Import paths must match actual filenames and locations.
+- Hidden Windows file extensions can cause double-extension mistakes.
+- The Network tab shows resource requests, types, sizes, and timing information.
+- Disabling the browser cache helps inspect fresh resource loading.
+- The resource size and transferred size can differ.
+- A conditional expression can hide a zero counter without hiding the Cart link.
+
+### Form Attributes Reviewed
+
+- type defines the input type and its browser behavior.
+- autoComplete describes the information the browser may offer to fill in.
+- placeholder provides a hint inside an empty field.
+- label and id connect a visible caption to its input.
+- value and onChange connect the input to React state.
+
+### Verification
+
+- Reported a successful build after updating image files and imports.
+- Reported correct image display in Hero, menu, and gallery.
+- Confirmed image filenames and resource sizes from a Network screenshot.
+- Reported correct Cart counter behavior for empty and non-empty states.
+- Autocomplete implementation and its final checks were not confirmed.
+
+### Decisions
+
+- Did not add loading="lazy"; this optional change was declined.
+- Did not claim that local development timings represent deployed performance.
+
+### Next Steps
+
+- Confirm whether the autocomplete attributes were added.
+- If added, check manual input behavior and run lint/build.
+- Continue preparing the site for deployment without expanding the scope unnecessarily.

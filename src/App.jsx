@@ -297,6 +297,7 @@ function App() {
 
                 <input
                   type="text"
+                  autoComplete="name"
                   placeholder="Your name"
                   value={checkoutName}
                   onChange={(event) => setCheckoutName(event.target.value)}
@@ -304,6 +305,7 @@ function App() {
 
                 <input
                   type="tel"
+                  autoComplete="tel"
                   placeholder="Phone number"
                   value={checkoutPhone}
                   onChange={(event) => setCheckoutPhone(event.target.value)}
@@ -320,6 +322,7 @@ function App() {
                 {deliveryMethod === "delivery" && (
                   <input
                     type="text"
+                    autoComplete="street-address"
                     placeholder="Delivery address"
                     value={checkoutAddress}
                     onChange={(event) => setCheckoutAddress(event.target.value)}
@@ -365,6 +368,7 @@ function App() {
             <input
               id="booking-name"
               type="text"
+              autoComplete="name"
               placeholder="Your name"
               value={bookingName}
               onChange={(event) => setBookingName(event.target.value)}

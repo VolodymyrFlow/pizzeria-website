@@ -1,6 +1,6 @@
-import margheritaImg from "../assets/margherita.jpg";
-import diavolaImg from "../assets/diavola.jpg";
-import prosciuttoImg from "../assets/prosciutto.jpg";
+import margheritaImg from "../assets/margherita.webp";
+import diavolaImg from "../assets/diavola.webp";
+import prosciuttoImg from "../assets/prosciutto.webp";
 
 function Gallery() {
   return (

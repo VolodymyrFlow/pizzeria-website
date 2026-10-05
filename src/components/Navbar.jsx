@@ -37,7 +37,7 @@ export default function Navbar({ darkMode, onToggleTheme, totalItems }) {
           Menu
         </a>
         <a href="#order" onClick={handleNavLinkClick}>
-          Cart ({totalItems})
+          Cart{totalItems > 0 ? `(${totalItems})` : ""}
         </a>
         <a href="#about" onClick={handleNavLinkClick}>
           About

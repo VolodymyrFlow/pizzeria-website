@@ -1,4 +1,4 @@
-import heroPizza from "../assets/margherita.jpg";
+import heroPizza from "../assets/margherita.webp";
 
 function Hero() {
   return (
