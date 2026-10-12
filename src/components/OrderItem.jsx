@@ -1,12 +1,15 @@
 function OrderItem({ item, onIncrease, onDecrease, onRemove }) {
   return (
     <div className="order-item">
+      {item.image && (
+        <img className="order-item-image" src={item.image} alt={item.name} />
+      )}
+
       <div>
         <span>{item.name}</span>
         <div className="quantity-controls">
           <button onClick={() => onDecrease(item.name)}>-</button>
           <span>{item.quantity}</span>
-
           <button onClick={() => onIncrease(item.name)}>+</button>
         </div>
       </div>

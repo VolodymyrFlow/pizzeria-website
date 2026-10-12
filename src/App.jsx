@@ -295,38 +295,55 @@ function App() {
                 <h3>Complete your order</h3>
                 <p>Please enter your details.</p>
 
-                <input
-                  type="text"
-                  autoComplete="name"
-                  placeholder="Your name"
-                  value={checkoutName}
-                  onChange={(event) => setCheckoutName(event.target.value)}
-                />
+                <div className="checkout-field">
+                  <label htmlFor="checkout-name">Your name</label>
+                  <input
+                    id="checkout-name"
+                    type="text"
+                    autoComplete="name"
+                    placeholder="Your name"
+                    value={checkoutName}
+                    onChange={(event) => setCheckoutName(event.target.value)}
+                  />
+                </div>
+                <div className="checkout-field">
+                  <label htmlFor="checkout-phone">Phone number</label>
+                  <input
+                    id="checkout-phone"
+                    type="tel"
+                    autoComplete="tel"
+                    placeholder="Phone number"
+                    value={checkoutPhone}
+                    onChange={(event) => setCheckoutPhone(event.target.value)}
+                  />
+                </div>
 
-                <input
-                  type="tel"
-                  autoComplete="tel"
-                  placeholder="Phone number"
-                  value={checkoutPhone}
-                  onChange={(event) => setCheckoutPhone(event.target.value)}
-                />
-
-                <select
-                  value={deliveryMethod}
-                  onChange={(event) => setDeliveryMethod(event.target.value)}
-                >
-                  <option value="delivery">Delivery</option>
-                  <option value="pickup">Pick-up</option>
-                </select>
+                <div className="checkout-field">
+                  <label htmlFor="delivery-method">Delivery method</label>
+                  <select
+                    id="delivery-method"
+                    value={deliveryMethod}
+                    onChange={(event) => setDeliveryMethod(event.target.value)}
+                  >
+                    <option value="delivery">Delivery</option>
+                    <option value="pickup">Pick-up</option>
+                  </select>
+                </div>
 
                 {deliveryMethod === "delivery" && (
-                  <input
-                    type="text"
-                    autoComplete="street-address"
-                    placeholder="Delivery address"
-                    value={checkoutAddress}
-                    onChange={(event) => setCheckoutAddress(event.target.value)}
-                  />
+                  <div className="checkout-field">
+                    <label htmlFor="checkout-address">Delivery address</label>
+                    <input
+                      id="checkout-address"
+                      type="text"
+                      autoComplete="street-address"
+                      placeholder="Delivery address"
+                      value={checkoutAddress}
+                      onChange={(event) =>
+                        setCheckoutAddress(event.target.value)
+                      }
+                    />
+                  </div>
                 )}
 
                 <button

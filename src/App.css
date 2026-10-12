@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  font-family: Georgia, serif;
+  font-family: "Inter", sans-serif;
   background: #f7efe3;
   color: #2b1d14;
 }
@@ -122,8 +122,24 @@ body {
 /* Featured */
 .featured {
   padding: 70px;
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 50px;
   background: #f7efe3;
+}
+
+.featured-visual img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(43, 29, 20, 0.18);
+}
+
+.featured-content {
+  text-align: left;
+  max-width: 520px;
 }
 
 .featured h2 {
@@ -131,11 +147,16 @@ body {
   margin-bottom: 20px;
 }
 
-.featured p:last-child {
-  max-width: 600px;
-  margin: 0 auto;
+.featured-content > p:not(.small-title):not(.featured-price) {
   color: #6b4a36;
   line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.featured-price {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
 /* Menu */
@@ -574,7 +595,7 @@ body {
 
 .dark .nav-links a,
 .dark .hero-text,
-.dark .featured p:last-child,
+.dark .featured-content > p:not(.small-title):not(.featured-price),
 .dark .about-content p,
 .dark .menu-card p,
 .dark .menu-count {
@@ -798,6 +819,19 @@ body {
   box-shadow: 0 12px 30px rgba(43, 29, 20, 0.08);
 }
 
+.order-item {
+  align-items: center;
+  gap: 16px;
+}
+
+.order-item-image {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
 .dark .order-summary {
   background: #1a1a1a;
   color: #f7efe3;
@@ -919,6 +953,18 @@ body {
   border: 2px solid #e7d8c5;
   border-radius: 18px;
   box-shadow: 0 12px 30px rgba(43, 29, 20, 0.88);
+}
+
+.checkout-field {
+  text-align: left;
+  display: grid;
+  gap: 6px;
+}
+
+.checkout-field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2b1d14;
 }
 
 .checkout-box h3 {
@@ -1404,6 +1450,11 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+  }
+  .featured {
+    grid-template-columns: 1fr;
+    padding: 48px 24px;
+    gap: 28px;
   }
 }
 

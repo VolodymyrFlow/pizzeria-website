@@ -3678,3 +3678,32 @@ It is not a measurement of overall page-speed improvement.
 - Confirm whether the autocomplete attributes were added.
 - If added, check manual input behavior and run lint/build.
 - Continue preparing the site for deployment without expanding the scope unnecessarily.
+
+## Coding Session 114 — Mobile Menu, Fonts, Forms, and Featured
+
+**Date:** October 12, 2026
+
+### What I Did
+
+- Verified the mobile menu works correctly (Menu/Close toggle, dropdown links, closing on link click).
+- Confirmed autocomplete attributes on all checkout and booking fields.
+- Replaced the base font Georgia with Inter for a consistent modern look.
+- Found and reviewed leftover Vite template styles in index.css.
+- Redesigned the Featured section: Diavola photo, price, and CTA in a two-column layout.
+- Added pizza thumbnails to cart order items.
+- Added visible labels to all checkout form fields for accessibility.
+- Fixed a dark-mode selector that broke after the Featured restructure.
+
+### What I Learned
+
+- A placeholder is not a label — it disappears when the user types.
+- label htmlFor must exactly match the input id.
+- Leftover template CSS can silently affect the whole layout.
+- Conditional rendering ({item.image && ...}) protects against old saved data.
+- Changing HTML structure can break old CSS selectors — check both themes.
+
+### Verification
+
+- Mobile menu confirmed working below 900px in DevTools device mode.
+- Lint and build passed after all changes.
+- Checkout form labels visible and linked to their inputs.
