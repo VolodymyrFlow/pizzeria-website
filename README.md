@@ -3707,3 +3707,29 @@ It is not a measurement of overall page-speed improvement.
 - Mobile menu confirmed working below 900px in DevTools device mode.
 - Lint and build passed after all changes.
 - Checkout form labels visible and linked to their inputs.
+
+## Coding Session 115 — Explaining the Codebase in English
+
+**Date:** October 13, 2026
+**Type:** Code review and interview practice
+
+### What We Covered
+
+- How the app starts: index.html provides an empty div#root, main.jsx mounts React there, App renders inside.
+- Heading hierarchy: one h1 per page, h2 for section titles — important for SEO and screen readers.
+- React state: useState pairs a value with a setter; only the setter triggers a re-render.
+- Controlled inputs: value + onChange together; removing onChange freezes the field.
+- Cart logic: handleAddToOrder finds an existing item by name and increases quantity instead of duplicating the row.
+- Why finding items by name is risky and why real projects use unique ids (primary keys).
+- The key prop in lists: unique and stable so React can match elements between renders.
+- Re-rendering vs DOM updates: React re-runs the component, diffs the virtual DOM, and patches only what changed.
+
+### Interview Answers Practiced
+
+- "React finds the empty root div in index.html and renders the whole app inside it."
+- "A controlled input uses value and onChange together."
+- "React compares the virtual DOM and updates only what changed in the real DOM."
+
+### Notes
+
+- The checkout-label fix, Featured redesign, and cart thumbnails from session 114 were verified working.
