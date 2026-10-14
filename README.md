@@ -3733,3 +3733,27 @@ It is not a measurement of overall page-speed improvement.
 ### Notes
 
 - The checkout-label fix, Featured redesign, and cart thumbnails from session 114 were verified working.
+
+## Coding Session 116 — localStorage, JSON, and Menu Filtering
+
+**Date:** October 14, 2026
+**Type:** Code review and interview practice
+
+### What We Covered
+
+- Reviewed session 115 topics: useState, controlled inputs, cart quantity logic.
+- localStorage: browser text-only storage that survives page refreshes.
+- Cart persistence: read once on load via useState initializer, written on every change via useEffect.
+- JSON.stringify converts objects to text; JSON.parse converts text back — required because localStorage stores only strings.
+- Data migration: old string prices like "€9.50" are converted to numbers on load.
+- JSON.parse throws a SyntaxError on invalid JSON — real projects wrap it in try/catch.
+- Menu filtering: pizzas are filtered by category and search query, then mapped to PizzaCard components.
+
+### Interview Answers Practiced
+
+- "On load, the app reads the cart from localStorage and parses it; on every change, it stringifies the cart back — so the cart survives page refreshes."
+- "The menu filters pizzas by category and search text, then maps the matching ones to card components."
+
+### Notes
+
+- A possible improvement: wrap JSON.parse in try/catch so corrupted storage cannot crash the app.
