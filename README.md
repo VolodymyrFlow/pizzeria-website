@@ -3757,3 +3757,24 @@ It is not a measurement of overall page-speed improvement.
 ### Notes
 
 - A possible improvement: wrap JSON.parse in try/catch so corrupted storage cannot crash the app.
+
+## Coding Sessions 117–118 — Filtering, Ternary Operator, and Arrow Functions
+
+**Dates:** October 19, 2026
+**Type:** Code review and syntax deep-dive
+
+### What We Covered
+
+- pizzas.js data layer: each pizza object carries fields like spicy, bestseller, vegetarian used by filters.
+- The filter method: iterates the array and keeps only items where the condition returns true.
+- Our filter checks category buttons (all, vegetarian, spicy, bestseller) with an || chain and search text with toLowerCase().includes().
+- Both conditions must pass: matchesCategory && matchesSearch.
+- Empty results: filteredPizzas.length === 0 shows "No pizzas found" instead of a blank section.
+- The ternary operator: condition ? value-if-true : value-if-false, written as ) : ( when each branch is a JSX block.
+- Arrow functions: (input) => result means "take this input and produce that output"; a shorter way to write a function.
+- Explained every symbol: { } runs JavaScript inside JSX, . accesses a property, === is strict equality, || means OR, && means AND.
+
+### Notes
+
+- Model selection issue was resolved by updating the Devin app.
+- Verified the menu filtering logic matches the actual App.jsx implementation.
