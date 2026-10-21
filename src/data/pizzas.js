@@ -1,4 +1,4 @@
-import margheritaImg from "../assets/margherita.jpg";
+import margheritaImg from "../assets/margherita.webp";
 import diavolaImg from "../assets/diavola.jpg";
 import prosciuttoImg from "../assets/prosciutto.jpg";
 import quattroFormaggiImg from "../assets/quattro-formaggi.jpg";
@@ -18,7 +18,7 @@ const pizzas = [
   },
   {
     name: "Diavola",
-    description: "Tomato sauce, mozzarella, spicy salami and chili.",
+    description: "Tomato sauce, mozzarella, spicy salami, chili and olives.",
     price: 11.5,
     image: diavolaImg,
     rating: 4.8,

@@ -1,4 +1,4 @@
-import margheritaImg from "../assets/margherita.jpg";
+import margheritaImg from "../assets/margherita.webp";
 import diavolaImg from "../assets/diavola.jpg";
 import prosciuttoImg from "../assets/prosciutto.jpg";
 

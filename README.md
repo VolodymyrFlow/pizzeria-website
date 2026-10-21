@@ -3850,3 +3850,22 @@ It is not a measurement of overall page-speed improvement.
 
 - Model selection issue was resolved by updating the Devin app.
 - Verified the menu filtering logic matches the actual App.jsx implementation.
+
+## Coding Session 119 — Project Walkthrough and Mentored Review
+
+**Date:** October 21, 2026
+
+### What We Did
+
+- Reviewed the full Navbar component: props, internal state, aria attributes, anchors.
+- Explained the Escape-key useEffect: addEventListener/cleanup pattern.
+- Compared components (JSX, UI) with utility files (pure logic, no rendering).
+- Explained loadCart: early return, try/catch, price normalization, useState initializer.
+- Discussed why tests exist and what happens without them.
+- Explained the conditional Cart counter ternary.
+
+### Key Concepts
+
+- useEffect runs code when dependencies change; returning a function cleans up (removes listeners).
+- Components render UI; utils return data and are easy to test.
+- Guard clauses handle bad cases first, keeping the happy path flat.
