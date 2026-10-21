@@ -38,6 +38,17 @@ npm run build   # production build
 npm run preview # preview the production build
 ```
 
+## Photo Credits
+
+All pizza photos are from Wikimedia Commons (free licenses):
+
+- Margherita — "Eq it-na pizza-margherita sep2005 sml.jpg"
+- Diavola — "Pizza Diavola (Verde Ischia).jpg"
+- Prosciutto — "2014 Pizza con funghi e prosciutto cotto e mozzarella di bufala.jpg"
+- Quattro Formaggi — "Pizza quattro formaggi at restaurant, Chalk Farm Road, London.jpg"
+- Capricciosa — "Pizza capricciosa, Munich.jpg"
+- Marinara — "Pizza marinara (Napoli).jpg"
+
 ## Demo Limitations
 
 This is a front-end demo:

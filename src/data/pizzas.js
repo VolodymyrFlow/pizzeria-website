@@ -1,6 +1,9 @@
-import margheritaImg from "../assets/margherita.webp";
-import diavolaImg from "../assets/diavola.webp";
-import prosciuttoImg from "../assets/prosciutto.webp";
+import margheritaImg from "../assets/margherita.jpg";
+import diavolaImg from "../assets/diavola.jpg";
+import prosciuttoImg from "../assets/prosciutto.jpg";
+import quattroFormaggiImg from "../assets/quattro-formaggi.jpg";
+import capricciosaImg from "../assets/capricciosa.jpg";
+import marinaraImg from "../assets/marinara.jpg";
 
 const pizzas = [
   {
@@ -33,6 +36,36 @@ const pizzas = [
     spicy: false,
     bestseller: false,
     vegetarian: false,
+  },
+  {
+    name: "Quattro Formaggi",
+    description: "Mozzarella, gorgonzola, fontina and parmesan on a light tomato base.",
+    price: 13.0,
+    image: quattroFormaggiImg,
+    rating: 4.7,
+    spicy: false,
+    bestseller: false,
+    vegetarian: true,
+  },
+  {
+    name: "Capricciosa",
+    description: "Tomato sauce, mozzarella, ham, mushrooms, artichokes and olives.",
+    price: 13.5,
+    image: capricciosaImg,
+    rating: 4.6,
+    spicy: false,
+    bestseller: false,
+    vegetarian: false,
+  },
+  {
+    name: "Marinara",
+    description: "Tomato sauce, garlic, oregano and olive oil. A Neapolitan classic without cheese.",
+    price: 8.5,
+    image: marinaraImg,
+    rating: 4.5,
+    spicy: false,
+    bestseller: false,
+    vegetarian: true,
   },
 ];
 

@@ -1,4 +1,4 @@
-import diavolaImg from "../assets/diavola.webp";
+import diavolaImg from "../assets/diavola.jpg";
 
 function Featured() {
   return (
