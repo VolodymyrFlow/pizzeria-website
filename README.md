@@ -1,3 +1,64 @@
+# Sapore Italiano — Pizzeria Website
+
+A responsive React + Vite website for a fictional Italian pizzeria in Prague. Built as a front-end portfolio project.
+
+## Features
+
+- Two-column hero and a featured "Pizza of the Week" section
+- Pizza menu with live search and category filters (vegetarian, spicy, best seller)
+- Shopping cart with quantity controls, item thumbnails, and a running total
+- Checkout form with validation and a persistent cart (`localStorage`)
+- Table booking form with date/time and guest validation
+- Dark mode saved between visits
+- Fully responsive layout with an accessible mobile navigation menu
+- Optimized WebP images (~11.5 MB → ~731 KB total)
+- Restaurant open/closed status based on Prague time (`Europe/Prague`)
+
+## Tech Stack
+
+- React, JSX, Vite
+- CSS (Flexbox, Grid, media queries, custom properties)
+- `localStorage` for cart and theme persistence
+- Node.js built-in test runner for utility functions
+- ESLint
+
+## Getting Started
+
+```bash
+npm install
+npm run dev
+```
+
+## Checks
+
+```bash
+npm test        # unit tests for utils
+npm run lint    # ESLint
+npm run build   # production build
+npm run preview # preview the production build
+```
+
+## Demo Limitations
+
+This is a front-end demo:
+
+- The checkout and booking forms validate input locally but do **not** send data to a real server or database.
+- Cart items are matched by `name`; a production version would use unique ids.
+- `localStorage` is browser storage, not a backend.
+
+## Project Structure
+
+- `src/App.jsx` — application state and main sections
+- `src/components/` — presentational components (Navbar, Hero, Featured, PizzaCard, OrderItem, Gallery, Reviews, Contact, Footer, About)
+- `src/data/pizzas.js` — menu data
+- `src/utils/` — pure logic with unit tests (order totals, item count, Prague hour, opening hours, cart loading)
+
+---
+
+# Learning Journal
+
+Below are notes from my mentoring sessions while building this project.
+
 # Coding Session 48
 
 Started Project 3: Italian Pizzeria Website.

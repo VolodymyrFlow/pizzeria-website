@@ -22,6 +22,7 @@ const pizzas = [
     spicy: true,
     bestseller: true,
     vegetarian: false,
+    isNew: true,
   },
   {
     name: "Prosciutto",

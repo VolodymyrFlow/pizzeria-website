@@ -1,9 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export default function Navbar({ darkMode, onToggleTheme, totalItems }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const handleNavLinkClick = () => {
     setMenuOpen(false);
   };
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const handleEscape = (event) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [menuOpen]);
   return (
     <nav className="navbar">
       <h2>Sapore Italiano</h2>

@@ -15,12 +15,15 @@ import calculateOrderTotal from "./utils/calculateOrderTotal.js";
 import calculateItemCount from "./utils/calculateItemCount.js";
 import isRestaurantOpen from "./utils/isRestaurantOpen.js";
 import getPragueHour from "./utils/getPragueHour.js";
+import loadCart from "./utils/loadCart.js";
 
 function App() {
   const [activeCategory, setActiveCategory] = useState("all");
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(
+    () => localStorage.getItem("theme") === "dark",
+  );
 
   const filteredPizzas = pizzas.filter((pizza) => {
     const matchesCategory =
@@ -48,23 +51,15 @@ function App() {
   const [checkoutMessage, setCheckoutMessage] = useState("");
   const [orderSuccessMessage, setOrderSuccessMessage] = useState("");
   const [deliveryMethod, setDeliveryMethod] = useState("delivery");
-  const [orderItems, setOrderItems] = useState(() => {
-    const savedCart = localStorage.getItem("cart");
-
-    return savedCart
-      ? JSON.parse(savedCart).map((item) => ({
-          ...item,
-          price:
-            typeof item.price === "string"
-              ? Number(item.price.replace("€", ""))
-              : item.price,
-        }))
-      : [];
-  });
+  const [orderItems, setOrderItems] = useState(loadCart);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(orderItems));
   }, [orderItems]);
+
+  useEffect(() => {
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+  }, [darkMode]);
 
   function handleBookingSubmit(event) {
     event.preventDefault();
@@ -203,6 +198,7 @@ function App() {
         <input
           className="search-input"
           type="text"
+          aria-label="Search pizza"
           placeholder="Search pizza..."
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
@@ -359,6 +355,10 @@ function App() {
                 {checkoutMessage && (
                   <p className="checkout-message">{checkoutMessage}</p>
                 )}
+
+                <p className="demo-note">
+                  Demo form — no real order is sent to a server.
+                </p>
               </form>
             )}
           </>
@@ -424,6 +424,10 @@ function App() {
         </form>
 
         {bookingMessage && <p className="booking-message">{bookingMessage}</p>}
+
+        <p className="demo-note">
+          Demo form — no real booking request is sent.
+        </p>
       </section>
 
       <Contact isOpen={isOpen} />

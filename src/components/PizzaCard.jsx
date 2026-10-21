@@ -18,6 +18,8 @@ export default function PizzaCard({ pizza, onAddToOrder }) {
 
         {pizza.spicy && <span className="badge">🌶️ Spicy</span>}
 
+        {pizza.isNew && <span className="badge">✨ New</span>}
+
         <span className="price">€{pizza.price.toFixed(2)}</span>
 
         <button className="order-button" onClick={() => onAddToOrder(pizza)}>

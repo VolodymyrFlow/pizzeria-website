@@ -563,6 +563,13 @@ body {
   opacity: 0.8;
 }
 
+.demo-note {
+  margin-top: 16px;
+  font-size: 13px;
+  color: #8a7360;
+  font-style: italic;
+}
+
 /* Dark Mode */
 .dark {
   background: #1a1a1a;
