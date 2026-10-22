@@ -2,6 +2,8 @@
 
 A responsive React + Vite website for a fictional Italian pizzeria in Prague. Built as a front-end portfolio project.
 
+**Live demo:** https://pizzeria-website-jbrr.vercel.app/ — deployed on Vercel; every push to `main` triggers a production build.
+
 ## Features
 
 - Two-column hero and a featured "Pizza of the Week" section
