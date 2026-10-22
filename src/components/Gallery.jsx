@@ -1,6 +1,6 @@
-import margheritaImg from "../assets/margherita.webp";
-import diavolaImg from "../assets/diavola.jpg";
-import prosciuttoImg from "../assets/prosciutto.jpg";
+import interiorHallImg from "../assets/interior-hall.jpg";
+import interiorTablesImg from "../assets/interior-tables.jpg";
+import interiorVaultImg from "../assets/interior-vault.jpg";
 
 function Gallery() {
   return (
@@ -8,9 +8,9 @@ function Gallery() {
       <p className="small-title">Gallery</p>
       <h2>Inside Sapore Italiano</h2>
       <div className="gallery-grid">
-        <img src={margheritaImg} alt="Margherita pizza" />
-        <img src={diavolaImg} alt="Diavola pizza" />
-        <img src={prosciuttoImg} alt="Prosciutto pizza" />
+        <img src={interiorHallImg} alt="Restaurant dining hall with wooden tables" />
+        <img src={interiorTablesImg} alt="Cozy pizzeria interior with set tables" />
+        <img src={interiorVaultImg} alt="Italian restaurant vault room with tables" />
       </div>
     </section>
   );

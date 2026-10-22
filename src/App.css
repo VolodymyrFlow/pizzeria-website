@@ -170,12 +170,6 @@ body {
   margin-bottom: 40px;
 }
 
-.menu-count {
-  margin-bottom: 30px;
-  color: #6b4a36;
-  font-size: 18px;
-}
-
 .search-input {
   display: block;
   width: 100%;
@@ -604,8 +598,7 @@ body {
 .dark .hero-text,
 .dark .featured-content > p:not(.small-title):not(.featured-price),
 .dark .about-content p,
-.dark .menu-card p,
-.dark .menu-count {
+.dark .menu-card p {
   color: #e7d8c5;
 }
 

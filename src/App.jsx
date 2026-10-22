@@ -193,8 +193,6 @@ function App() {
 
         <h2>Fresh from the oven</h2>
 
-        <p className="menu-count">{pizzas.length} pizzas available</p>
-
         <input
           className="search-input"
           type="text"

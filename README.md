@@ -49,6 +49,12 @@ All pizza photos are from Wikimedia Commons (free licenses):
 - Capricciosa — "Pizza capricciosa, Munich.jpg"
 - Marinara — "Pizza marinara (Napoli).jpg"
 
+Interior photos in the Gallery section (Wikimedia Commons, CC BY-SA):
+
+- "Sala della Trattoria del Cimino.jpg" (CC BY-SA 4.0)
+- "Capri Italian Restaurant - June 2022 - Sarah Stierch 03.jpg" (CC BY 4.0)
+- "L'eau Vive restaurant, Rome.jpg" (CC BY-SA 3.0)
+
 ## Demo Limitations
 
 This is a front-end demo:
