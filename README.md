@@ -3877,3 +3877,22 @@ It is not a measurement of overall page-speed improvement.
 - useEffect runs code when dependencies change; returning a function cleans up (removes listeners).
 - Components render UI; utils return data and are easy to test.
 - Guard clauses handle bad cases first, keeping the happy path flat.
+
+## Coding Session 121 — Deploy, Merge, and Code Walkthrough Practice
+
+**Date:** October 23, 2026
+
+### What We Did
+
+- Reviewed the project as a junior portfolio: identified dead CSS, unused assets, a11y gaps, and SEO improvements.
+- Deployed the site to Vercel connected to the GitHub repo — pushes to main now trigger production builds.
+- Merged `polish/portfolio-ready` into `main`; fixed the "old photos on prod" issue (deploy was building stale `main`).
+- Replaced gallery photos with three consistent, license-clean Italian interior shots; verified deployed bundle.
+- Practiced verbal code explanations: state variables, `filter` with `!==` and `> 0`, `loadCart` from memory.
+- Added the live demo URL to the README.
+
+### Key Concepts
+
+- CI/CD: commit → push → Vercel auto-build.
+- `filter` keeps elements where the condition is true — `!==` removes, `> 0` auto-drops zero-quantity items.
+- Explaining code: WHAT it is → WHAT it does → WHY it exists.
