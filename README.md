@@ -3896,3 +3896,31 @@ It is not a measurement of overall page-speed improvement.
 - CI/CD: commit → push → Vercel auto-build.
 - `filter` keeps elements where the condition is true — `!==` removes, `> 0` auto-drops zero-quantity items.
 - Explaining code: WHAT it is → WHAT it does → WHY it exists.
+
+## Coding Session 122 — First Local Node.js Server
+
+**Date:** October 24, 2026
+
+### What We Did
+
+- Created `server/index.js` using Node.js and the built-in `node:http` module.
+- Started the server locally on `127.0.0.1:3001`.
+- Opened `/api/health` in the browser and received `{"status":"ok"}`.
+- Opened `/unknown` and received `{"error":"Not found"}`.
+- Discussed requests, responses, routes, JSON, and HTTP status codes.
+- Practiced reading the route condition using `===` and `&&`.
+
+### Key Concepts
+
+- The browser sends a request; the server returns a response.
+- HTTP 200 means success; HTTP 404 means the requested route was not found.
+- A connection failure is different from a 404 response.
+- `JSON.stringify` converts a JavaScript object into JSON text.
+- `response.end()` sends the response body and completes the response.
+
+### Verification and Limitations
+
+- Both response bodies were manually checked in the browser by the learner.
+- The server runs locally; it is not deployed.
+- React is not connected to the server yet.
+- No database, order processing, or booking storage has been added.
