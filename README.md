@@ -3924,3 +3924,30 @@ It is not a measurement of overall page-speed improvement.
 - The server runs locally; it is not deployed.
 - React is not connected to the server yet.
 - No database, order processing, or booking storage has been added.
+
+## Coding Session 123 — Serving the Menu from a Node API
+
+**Date:** October 25, 2026
+
+### What We Did
+
+- Added a second route `GET /api/pizzas` that returns a `menu` array as JSON.
+- Fixed a bug where a second `createServer` was nested inside the first one.
+- Learned that `if` without braces applies only to the next statement.
+- Hit a real CORS error fetching from `localhost:5173` to `127.0.0.1:3001`.
+- Added `Access-Control-Allow-Origin: *` to responses and restarted the server.
+- Successfully fetched the pizza list in the browser console.
+- Learned the difference between CSP (page rules) and CORS (server permission), and that a dead server also produces a NetworkError.
+
+### Key Concepts
+
+- `if` without `{}` covers only one statement — always use braces.
+- A Node server must be restarted after code changes; it reads the file once into memory.
+- Cross-origin requests need the server's `Access-Control-Allow-Origin` header.
+- `fetch` returns a pending Promise; `res.json()` parses the response body into real data.
+
+### Limitations
+
+- The API is local-only; not deployed and not wired into React yet.
+- Menu data is a hardcoded array, not a database.
+- `Access-Control-Allow-Origin: *` is for learning; production should name the exact domain.
