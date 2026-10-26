@@ -10,22 +10,39 @@ import OrderItem from "./components/OrderItem";
 import Gallery from "./components/Gallery";
 import Reviews from "./components/Reviews";
 import Contact from "./components/Contact";
-import pizzas from "./data/pizzas";
 import calculateOrderTotal from "./utils/calculateOrderTotal.js";
 import calculateItemCount from "./utils/calculateItemCount.js";
 import isRestaurantOpen from "./utils/isRestaurantOpen.js";
 import getPragueHour from "./utils/getPragueHour.js";
 import loadCart from "./utils/loadCart.js";
+import margheritaImg from "./assets/margherita.webp";
+import diavolaImg from "./assets/diavola.jpg";
+import prosciuttoImg from "./assets/prosciutto.jpg";
+import quattroFormaggiImg from "./assets/quattro-formaggi.jpg";
+import capricciosaImg from "./assets/capricciosa.jpg";
+import marinaraImg from "./assets/marinara.jpg";
+
+const pizzaImages = {
+  Margherita: margheritaImg,
+  Diavola: diavolaImg,
+  Prosciutto: prosciuttoImg,
+  "Quattro Formaggi": quattroFormaggiImg,
+  Capricciosa: capricciosaImg,
+  Marinara: marinaraImg,
+};
 
 function App() {
   const [activeCategory, setActiveCategory] = useState("all");
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [menuPizzas, setMenuPizzas] = useState([]);
+  const [menuLoading, setMenuLoading] = useState(true);
+  const [menuError, setMenuError] = useState(null);
   const [darkMode, setDarkMode] = useState(
     () => localStorage.getItem("theme") === "dark",
   );
 
-  const filteredPizzas = pizzas.filter((pizza) => {
+  const filteredPizzas = menuPizzas.filter((pizza) => {
     const matchesCategory =
       activeCategory === "all" ||
       (activeCategory === "vegetarian" && pizza.vegetarian) ||
@@ -60,6 +77,25 @@ function App() {
   useEffect(() => {
     localStorage.setItem("theme", darkMode ? "dark" : "light");
   }, [darkMode]);
+  useEffect(() => {
+    fetch("http://127.0.0.1:3001/api/pizzas")
+      .then((res) => {
+        if (!res.ok) throw new Error("Server error");
+        return res.json();
+      })
+      .then((data) => {
+        const withImages = data.map((pizza) => ({
+          ...pizza,
+          image: pizzaImages[pizza.name],
+        }));
+        setMenuPizzas(withImages);
+        setMenuLoading(false);
+      })
+      .catch((err) => {
+        setMenuError(err.message);
+        setMenuLoading(false);
+      });
+  }, []);
 
   function handleBookingSubmit(event) {
     event.preventDefault();
@@ -228,6 +264,9 @@ function App() {
             Best Seller
           </button>
         </div>
+
+        {menuLoading && <p>Loading menu</p>}
+        {menuError && <p>Could not load menu: {menuError}</p>}
 
         <div className="menu-grid">
           {filteredPizzas.length === 0 ? (

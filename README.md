@@ -3951,3 +3951,29 @@ It is not a measurement of overall page-speed improvement.
 - The API is local-only; not deployed and not wired into React yet.
 - Menu data is a hardcoded array, not a database.
 - `Access-Control-Allow-Origin: *` is for learning; production should name the exact domain.
+
+## Coding Session 124 — Connecting React to the Node API
+
+**Date:** October 26, 2026
+
+### What We Did
+
+- Expanded `server/index.js` menu to all six pizzas with full fields (name, description, price, rating, flags) — no image field, images stay in the frontend bundle.
+- Added menu state to App.jsx: `menuPizzas`, `menuLoading`, `menuError`.
+- Fetched `GET /api/pizzas` in a `useEffect` with an empty dependency array (runs once on mount).
+- Handled `res.ok` to turn HTTP errors into thrown errors caught by `.catch`.
+- Merged fetched pizzas with local images via a `pizzaImages` name→file map.
+- Added conditional UI for loading and error states.
+- Kept the existing filter/search working on fetched data instead of the static file.
+
+### Key Concepts
+
+- Client-server split: the server owns data; React fetches and renders it.
+- Async fetch needs three states: data, loading, error.
+- `res.json()` parses the JSON text body into a real array.
+- Empty `[]` dependency means "run once on mount".
+
+### Limitations
+
+- The API is local-only; production still serves the static bundle.
+- Menu data lives in server memory, not a database yet.
