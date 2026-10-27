@@ -61,7 +61,19 @@ const menu = [
   },
 ];
 
+const orders = [];
+
 const server = createServer((request, response) => {
+  if (request.method === "OPTIONS") {
+    response.writeHead(204, {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    });
+    response.end();
+    return;
+  }
+
   if (request.method === "GET" && request.url === "/api/health") {
     response.writeHead(200, {
       "Content-Type": "application/json",
@@ -77,6 +89,33 @@ const server = createServer((request, response) => {
       "Access-Control-Allow-Origin": "*",
     });
     response.end(JSON.stringify(menu));
+    return;
+  }
+
+  if (request.method === "POST" && request.url === "/api/orders") {
+    let body = "";
+
+    request.on("data", (chunk) => {
+      body += chunk;
+    });
+
+    request.on("end", () => {
+      try {
+        const order = JSON.parse(body);
+        orders.push(order);
+        response.writeHead(201, {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        });
+        response.end(JSON.stringify({ status: "received", id: orders.length }));
+      } catch {
+        response.writeHead(400, {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        });
+        response.end(JSON.stringify({ error: "Invalid JSON" }));
+      }
+    });
     return;
   }
 

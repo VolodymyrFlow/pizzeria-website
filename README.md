@@ -3977,3 +3977,28 @@ It is not a measurement of overall page-speed improvement.
 
 - The API is local-only; production still serves the static bundle.
 - Menu data lives in server memory, not a database yet.
+
+## Coding Session 125 — POST /api/orders: Receiving Orders on the Server
+
+**Date:** October 27, 2026
+
+### What We Did
+
+- Added an `OPTIONS` preflight handler — required before any cross-origin POST with JSON.
+- Created `POST /api/orders`: reads the request body in chunks via `request.on("data")`/`"end"`, parses JSON, stores orders in an in-memory `orders` array.
+- Returned `201 Created` with `{status:"received", id}` or `400` for invalid JSON.
+- Fixed four bugs: a semicolon after `if`, `"Post"` vs `"POST"`, stray imports (`useEffect` in Node!), and a removed `/api/health` route.
+- Learned that `fetch` code belongs in the browser DevTools console, not PowerShell.
+- Verified orders accumulate: each POST gets a new `id`.
+
+### Key Concepts
+
+- GET reads data; POST sends data in the request body.
+- Browsers send an OPTIONS preflight before cross-origin POSTs with JSON.
+- Request bodies arrive as a stream — assemble chunks, then parse on "end".
+- 201 means "created"; 400 means the client sent bad data.
+
+### Limitations
+
+- Orders live in server memory — lost on restart (no database yet).
+- The checkout form is not wired to the API yet.
