@@ -4002,3 +4002,59 @@ It is not a measurement of overall page-speed improvement.
 
 - Orders live in server memory — lost on restart (no database yet).
 - The checkout form is not wired to the API yet.
+
+## Coding Session 126 — Understanding the Order Request Flow
+
+## Сесія 126 — Розуміння обробки запиту замовлення
+
+**Date / Дата:** 2026-10-28
+
+### Practice / Практика
+
+- Reviewed how the browser sends an order and the Node server receives it.
+  Розібрали, як браузер надсилає замовлення, а Node-сервер його приймає.
+
+- Practised converting JSON text into a JavaScript object and reading and changing its properties.
+  Практикували перетворення JSON-тексту на JavaScript-об’єкт, читання та зміну його властивостей.
+
+- Reviewed route conditions, request chunks, +=, the "data" and "end" events, and try...catch.
+  Розібрали умови маршрутів, порції даних запиту, +=, події "data" та "end" і try...catch.
+
+- Explained response status 201, the order count used as an id, and return inside the request handler.
+  Пояснили статус відповіді 201, використання кількості замовлень як id та return в обробнику запиту.
+
+- Introduced OPTIONS as a browser permission check before our cross-origin JSON POST.
+  Розібрали OPTIONS як перевірку дозволу браузером перед нашим міжджерельним POST-запитом із JSON.
+
+### Progress / Прогрес
+
+- Independently selected the name property and explained why one order object increases the array length by one.
+  Самостійно вибрав властивість name та пояснив, чому один об’єкт замовлення збільшує довжину масиву на один.
+
+- With guidance, changed an object property and practised a similar booking example.
+  З підказками змінив властивість об’єкта та попрактикував схожий приклад бронювання.
+
+- Correctly predicted several results and explained the difference between JSON text and the parsed object.
+  Правильно передбачив кілька результатів і пояснив різницю між JSON-текстом та отриманим об’єктом.
+
+### Still Needs Practice / Ще потребує практики
+
+- Writing a similar solution without a completed example.
+  Написання схожого рішення без готового прикладу.
+
+- Consistent property names and the order of asynchronous event handlers.
+  Узгоджені назви властивостей і порядок виконання асинхронних обробників подій.
+
+- Understanding preflight requests through browser network tools.
+  Розуміння попередніх запитів через мережеві інструменти браузера.
+
+### Limitations / Обмеження
+
+- The server parses JSON but does not yet validate the order structure.
+  Сервер розбирає JSON, але ще не перевіряє структуру замовлення.
+
+- Orders remain in server memory and disappear after a restart.
+  Замовлення залишаються в пам’яті сервера та зникають після перезапуску.
+
+- The checkout form is not connected to POST /api/orders yet.
+  Форма оформлення замовлення ще не підключена до POST /api/orders.
