@@ -1,3 +1,4 @@
+import { error } from "node:console";
 import { createServer } from "node:http";
 
 const menu = [
@@ -102,6 +103,14 @@ const server = createServer((request, response) => {
     request.on("end", () => {
       try {
         const order = JSON.parse(body);
+        if (!Array.isArray(order.items) || order.items.length === 0) {
+          response.whiteHead(400, {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          });
+          response.end(JSON.stringify({ error: "Invalid order" }));
+          return;
+        }
         orders.push(order);
         response.writeHead(201, {
           "Content-Type": "application/json",

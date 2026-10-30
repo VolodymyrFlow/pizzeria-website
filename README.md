@@ -4058,3 +4058,27 @@ It is not a measurement of overall page-speed improvement.
 
 - The checkout form is not connected to POST /api/orders yet.
   Форма оформлення замовлення ще не підключена до POST /api/orders.
+
+## Coding Session 127 — JSON Serialization Deep Dive and Order Validation
+
+**Date:** October 30, 2026
+
+### What We Did
+
+- Practised writing JSON text by hand and converting it with `JSON.parse`.
+- Debugged a `redeclaration of const` console error — `const` names are unique per scope.
+- Learned `JSON.stringify` — the reverse direction: object → text for sending.
+- Traced the full request cycle: client stringifies → server parses → server pushes → server stringifies → client parses.
+- Introduced `Array.isArray` to distinguish arrays from other objects (`typeof []` is `"object"`).
+- Planned server-side validation: reject orders where `items` is not an array or is empty, with 400 "Invalid order".
+
+### Key Concepts
+
+- Data travels the network as text only — the sender stringifies, the receiver parses.
+- `response.writeHead(status, headers)` sends the status code and headers; `response.end(body)` sends the body and finishes the response.
+- Never trust client data — server validation is the last line of defence.
+
+### Limitations
+
+- Validation code discussed but not yet added to `server/index.js`.
+- The checkout form still is not wired to POST /api/orders.
