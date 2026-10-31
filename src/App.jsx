@@ -198,18 +198,40 @@ function App() {
       setCheckoutMessage("Please enter your delivery address");
       return;
     }
+    const order = {
+      customer: checkoutName,
+      phone: checkoutPhone,
+      method: deliveryMethod,
+      address: checkoutAddress,
+      items: orderItems,
+    };
 
-    setOrderSuccessMessage(
-      `Thank you, ${checkoutName}! Your order has been placed.`,
-    );
-
-    setCheckoutMessage("");
-    setCheckoutName("");
-    setCheckoutPhone("");
-    setCheckoutAddress("");
-    setDeliveryMethod("delivery");
-    setShowCheckout(false);
-    setOrderItems([]);
+    fetch("http://127.0.0.1:3001/api/orders", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(order),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Server error");
+        }
+        return res.json();
+      })
+      .then(() => {
+        setOrderSuccessMessage(
+          `Thank you, ${checkoutName}! Your order has been placed`,
+        );
+        setCheckoutMessage("");
+        setCheckoutName("");
+        setCheckoutPhone("");
+        setCheckoutAddress("");
+        setDeliveryMethod("delivery");
+        setShowCheckout(false);
+        setOrderItems([]);
+      })
+      .catch(() => {
+        setCheckoutMessage("Could not send the order.Please try again.");
+      });
   }
 
   return (

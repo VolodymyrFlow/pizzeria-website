@@ -4082,3 +4082,24 @@ It is not a measurement of overall page-speed improvement.
 
 - Validation code discussed but not yet added to `server/index.js`.
 - The checkout form still is not wired to POST /api/orders.
+
+## Coding Session 128 — Order Validation and Real Checkout POST
+
+**Date:** October 31, 2026
+
+### What We Did
+
+- Added server-side validation to POST /api/orders: items must be a non-empty array or the server responds 400 "Invalid order".
+- Wired the checkout form to the API: handleCheckoutSubmit now builds an order object (customer, phone, method, address, items) and POSTs it as JSON.
+- Moved cart clearing and the success message into .then — they now run only after a successful server response, so a failed order is not lost.
+- Added .catch to show "Could not send the order" when the server is down.
+
+### Key Concepts
+
+- The server validates again even when the form validates — never trust client data.
+- Side effects that depend on a request belong inside .then/.catch, not after fetch.
+
+### Limitations
+
+- Orders still live in server memory (no database).
+- The API is local-only; the deployed site cannot reach it.
