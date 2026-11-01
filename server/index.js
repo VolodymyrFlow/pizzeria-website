@@ -128,6 +128,15 @@ const server = createServer((request, response) => {
     return;
   }
 
+  if (request.method === "GET" && request.url === "/api/orders") {
+    response.writeHead(200, {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    });
+    response.end(JSON.stringify(orders));
+    return;
+  }
+
   response.writeHead(404, { "Content-Type": "application/json" });
   response.end(JSON.stringify({ error: "Not found" }));
 });

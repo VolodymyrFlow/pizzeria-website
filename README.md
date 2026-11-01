@@ -4103,3 +4103,20 @@ It is not a measurement of overall page-speed improvement.
 
 - Orders still live in server memory (no database).
 - The API is local-only; the deployed site cannot reach it.
+
+## Coding Session 129 — GET /api/orders and Deep Dive Into handleCheckoutSubmit
+
+**Date:** November 1, 2026
+
+### What We Did
+
+- Added GET /api/orders — a read route returning all stored orders as JSON.
+- Explained GET vs POST: GET reads server state without changing it; POST creates data and changes state.
+- Fixed a header typo (`aplication/json` → `application/json`) in the checkout fetch.
+- Broke down handleCheckoutSubmit line by line: preventDefault, trim validation, order object, fetch options, res.ok, success cleanup, catch.
+
+### Key Concepts
+
+- One resource, two actions: POST pushes into `orders`, GET reads it back.
+- The network carries text only — stringify on send, parse on receive.
+- `response.end` must be followed by `return` to avoid reaching the 404 block.
