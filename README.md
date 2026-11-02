@@ -4120,3 +4120,28 @@ It is not a measurement of overall page-speed improvement.
 - One resource, two actions: POST pushes into `orders`, GET reads it back.
 - The network carries text only — stringify on send, parse on receive.
 - `response.end` must be followed by `return` to avoid reaching the 404 block.
+
+## Coding Session 130 — SQLite Database for Orders
+
+**Date:** November 2, 2026
+
+### What We Did
+
+- Replaced the in-memory `orders` array with SQLite via built-in `node:sqlite` — no npm needed (Node 24).
+- Created `orders.db` and a `CREATE TABLE IF NOT EXISTS orders` with id, customer, phone, method, address, items columns.
+- POST /api/orders now runs a prepared INSERT with `?` placeholders — protects against SQL injection; returns `lastInsertRowid` as the order id.
+- GET /api/orders reads rows with SELECT, maps each row, and parses `items` back from JSON text to an array.
+- Verified persistence: orders survive a server restart.
+- Fixed bugs along the way: stray console import, extra paren in CREATE TABLE, `whiteHead` typo, leftover `orders` references.
+
+### Key Concepts
+
+- Persistence: a file-backed database survives restarts; RAM does not.
+- Prepared statements keep user data separate from SQL code.
+- items is stored as JSON text in a TEXT column — stringify on write, parse on read.
+
+### Limitations
+
+- items as JSON text can't be queried per-pizza in SQL (needs an order_items table).
+- No DELETE/UPDATE routes, no created_at timestamp yet.
+- orders.db should be added to .gitignore (binary file, not for git).

@@ -1,5 +1,5 @@
-import { error } from "node:console";
 import { createServer } from "node:http";
+import { DatabaseSync } from "node:sqlite";
 
 const menu = [
   {
@@ -62,7 +62,17 @@ const menu = [
   },
 ];
 
-const orders = [];
+const db = new DatabaseSync("orders.db");
+
+db.exec(` CREATE TABLE IF NOT EXISTS orders (
+  id INTEGER PRIMARY KEY,
+  customer TEXT,
+  phone TEXT,
+  method TEXT,
+  address Text,
+  items Text
+)
+  `);
 
 const server = createServer((request, response) => {
   if (request.method === "OPTIONS") {
@@ -104,19 +114,31 @@ const server = createServer((request, response) => {
       try {
         const order = JSON.parse(body);
         if (!Array.isArray(order.items) || order.items.length === 0) {
-          response.whiteHead(400, {
+          response.writeHead(400, {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
           });
           response.end(JSON.stringify({ error: "Invalid order" }));
           return;
         }
-        orders.push(order);
+        const result = db
+          .prepare(
+            "INSERT INTO orders (customer, phone, method, address, items) VALUES (?,?,?,?,?)",
+          )
+          .run(
+            order.customer,
+            order.phone,
+            order.method,
+            order.address,
+            JSON.stringify(order.items),
+          );
         response.writeHead(201, {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         });
-        response.end(JSON.stringify({ status: "received", id: orders.length }));
+        response.end(
+          JSON.stringify({ status: "received", id: result.lastInsertRowid }),
+        );
       } catch {
         response.writeHead(400, {
           "Content-Type": "application/json",
@@ -129,6 +151,11 @@ const server = createServer((request, response) => {
   }
 
   if (request.method === "GET" && request.url === "/api/orders") {
+    const rows = db.prepare("SELECT * FROM orders").all();
+    const orders = rows.map((row) => ({
+      ...row,
+      items: JSON.parse(row.items),
+    }));
     response.writeHead(200, {
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*",
