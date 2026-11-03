@@ -70,9 +70,13 @@ db.exec(` CREATE TABLE IF NOT EXISTS orders (
   phone TEXT,
   method TEXT,
   address Text,
-  items Text
+  items Text,
+  created_at TEXT
 )
   `);
+try {
+  db.exec("ALTER TABLE orders ADD COLUMN created_at TEXT");
+} catch {}
 
 const server = createServer((request, response) => {
   if (request.method === "OPTIONS") {
@@ -123,7 +127,7 @@ const server = createServer((request, response) => {
         }
         const result = db
           .prepare(
-            "INSERT INTO orders (customer, phone, method, address, items) VALUES (?,?,?,?,?)",
+            "INSERT INTO orders (customer, phone, method, address, items, created_at) VALUES (?,?,?,?,?,?)",
           )
           .run(
             order.customer,
@@ -131,6 +135,7 @@ const server = createServer((request, response) => {
             order.method,
             order.address,
             JSON.stringify(order.items),
+            new Date().toISOString(),
           );
         response.writeHead(201, {
           "Content-Type": "application/json",

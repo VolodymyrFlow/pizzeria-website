@@ -4145,3 +4145,24 @@ It is not a measurement of overall page-speed improvement.
 - items as JSON text can't be queried per-pizza in SQL (needs an order_items table).
 - No DELETE/UPDATE routes, no created_at timestamp yet.
 - orders.db should be added to .gitignore (binary file, not for git).
+
+## Coding Session 131 — Adding created_at with ALTER TABLE
+
+**Date:** November 3, 2026
+
+### What We Did
+
+- Added `created_at TEXT` to the orders table — both in CREATE TABLE (fresh DBs) and via `ALTER TABLE orders ADD COLUMN` inside try/catch for the existing table.
+- Extended the INSERT to six `?` placeholders; `new Date().toISOString()` writes the current UTC timestamp per order.
+- Traced `items` end to end: cart state → order object → JSON over HTTP → TEXT column → parsed back in GET.
+- Reviewed array-vs-object nesting in the API response.
+
+### Key Concepts
+
+- CREATE TABLE IF NOT EXISTS is skipped for existing tables — ALTER TABLE updates live schemas.
+- Each INSERT gets its own timestamp; old rows stay untouched (NULL for pre-existing rows).
+
+### Limitations
+
+- Orders made before the column was added have created_at: null.
+- No UPDATE/DELETE routes yet.
