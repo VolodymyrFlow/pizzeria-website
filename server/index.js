@@ -82,7 +82,7 @@ const server = createServer((request, response) => {
   if (request.method === "OPTIONS") {
     response.writeHead(204, {
       "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
     });
     response.end();
@@ -167,6 +167,20 @@ const server = createServer((request, response) => {
     });
     response.end(JSON.stringify(orders));
     return;
+  }
+
+  if (request.method === "DELETE" && request.url.startsWith("/api/orders/")) {
+    const id = Number(request.url.split("/").pop());
+    const result = db.prepare("DELETE FROM orders WHERE id = ?").run(id);
+
+    if (result.changes === 0) {
+      response.whiteHead(404, {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      });
+      response.end(JSON.stringify({ status: "deleted", id }));
+      return;
+    }
   }
 
   response.writeHead(404, { "Content-Type": "application/json" });

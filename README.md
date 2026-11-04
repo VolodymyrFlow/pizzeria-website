@@ -4166,3 +4166,26 @@ It is not a measurement of overall page-speed improvement.
 
 - Orders made before the column was added have created_at: null.
 - No UPDATE/DELETE routes yet.
+
+## Coding Session 132 — DELETE /api/orders/:id and Full Request Lifecycle
+
+**Date:** November 4, 2026
+
+### What We Did
+
+- Added `DELETE /api/orders/:id` route: parses the id from the URL with `split("/").pop()` + `Number()`, runs `DELETE FROM orders WHERE id = ?` via prepared statement.
+- Returned 404 "Order not found" when `result.changes === 0`, else 200 `{status:"deleted", id}`.
+- Added DELETE to `Access-Control-Allow-Methods` so the preflight allows it.
+- Verified deletion persists in SQLite: orders vanish from GET /api/orders.
+- Compared POST vs DELETE: body-driven creation vs URL-driven removal.
+
+### Key Concepts
+
+- DELETE without WHERE would remove every row — the most dangerous SQL typo.
+- REST: data for creation travels in the body; the resource id for deletion travels in the URL.
+- `result.changes` tells how many rows were actually affected.
+
+### Limitations
+
+- No UPDATE/PUT route yet; SQLite may reuse the highest deleted id (needs AUTOINCREMENT to prevent).
+- Deletion is triggered only via fetch/console — no UI button.
