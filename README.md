@@ -4189,3 +4189,26 @@ It is not a measurement of overall page-speed improvement.
 
 - No UPDATE/PUT route yet; SQLite may reuse the highest deleted id (needs AUTOINCREMENT to prevent).
 - Deletion is triggered only via fetch/console — no UI button.
+
+## Coding Session 133 — PUT /api/orders/:id Completes CRUD
+
+**Date:** November 5, 2026
+
+### What We Did
+
+- Built PUT /api/orders/:id by adapting the POST handler: id from URL, body via data/end, JSON.parse inside "end", items validation.
+- SQL `UPDATE orders SET customer = ?, phone = ? WHERE id = ?` via prepared statement.
+- Checked `result.changes === 0` → 404 "Order not found"; otherwise 200 `{status:"updated", id}`.
+- Fixed a real CORS block: added PUT to Access-Control-Allow-Methods — the browser blocked the request at preflight before it reached our route.
+- Debugged a null-id update: PUT on a deleted id correctly returned 404.
+
+### Key Concepts
+
+- PUT updates an existing resource; POST creates a new one.
+- UPDATE without WHERE changes every row — same danger as DELETE without WHERE.
+- New HTTP methods must be added to the CORS methods header or the browser blocks them.
+
+### Limitations
+
+- PUT only updates customer and phone; items and address stay unchanged.
+- No UI for editing — route is exercised via fetch only.

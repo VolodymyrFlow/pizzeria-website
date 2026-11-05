@@ -82,7 +82,7 @@ const server = createServer((request, response) => {
   if (request.method === "OPTIONS") {
     response.writeHead(204, {
       "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
     });
     response.end();
@@ -181,6 +181,55 @@ const server = createServer((request, response) => {
       response.end(JSON.stringify({ status: "deleted", id }));
       return;
     }
+  }
+  if (request.method === "PUT" && request.url.startsWith("/api/orders/")) {
+    const id = Number(request.url.split("/").pop());
+    let body = "";
+
+    request.on("data", (chunk) => {
+      body += chunk;
+    });
+
+    request.on("end", () => {
+      try {
+        const order = JSON.parse(body);
+
+        if (!Array.isArray(order.items) || order.items.length === 0) {
+          response.writeHead(400, {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          });
+          response.end(JSON.stringify({ error: "Invalid order" }));
+          return;
+        }
+
+        const result = db
+          .prepare("UPDATE orders SET customer = ?, phone = ? WHERE id = ?")
+          .run(order.customer, order.phone, id);
+
+        if (result.changes === 0) {
+          response.writeHead(404, {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          });
+          response.end(JSON.stringify({ error: "Order not found" }));
+          return;
+        }
+
+        response.writeHead(200, {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        });
+        response.end(JSON.stringify({ status: "updated", id }));
+      } catch {
+        response.writeHead(400, {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        });
+        response.end(JSON.stringify({ error: "Invalid JSON" }));
+      }
+    });
+    return;
   }
 
   response.writeHead(404, { "Content-Type": "application/json" });
