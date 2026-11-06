@@ -4212,3 +4212,27 @@ It is not a measurement of overall page-speed improvement.
 
 - PUT only updates customer and phone; items and address stay unchanged.
 - No UI for editing — route is exercised via fetch only.
+
+## Coding Session 134 — Authentication: Login Endpoint and Token Check
+
+**Date:** November 6, 2026
+
+### What We Did
+
+- Completed PUT — it now updates customer, phone, address, and items (full column set).
+- Added `ADMIN_USERNAME`/`ADMIN_PASSWORD` constants and a `sessions` array.
+- Added POST /api/login: reads credentials JSON, compares to constants, issues a random token, stores it in sessions, returns 200 `{token}` or 401 "Invalid credentials".
+- Added a token check to DELETE /api/orders/:id — reads `request.headers.authorization` and returns 401 unless the token exists in sessions.
+- Debugged a real CORS preflight block on PUT and a 404 caused by a stale server process.
+
+### Key Concepts
+
+- Password is checked once; the session token is shown for later requests — safer than resending the password.
+- 401 = authentication failed; 400 = bad request shape; 404 = no such route/resource.
+- Node runs the file loaded at startup — edit, then restart, or you debug dead code.
+
+### Limitations
+
+- Credentials are hardcoded in source — real projects use env variables and hashed passwords.
+- Sessions live in memory — gone on restart; no expiry.
+- No login UI yet — all exercised via console fetch.

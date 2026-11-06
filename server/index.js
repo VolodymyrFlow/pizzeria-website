@@ -1,3 +1,4 @@
+import { error } from "node:console";
 import { createServer } from "node:http";
 import { DatabaseSync } from "node:sqlite";
 
@@ -77,6 +78,11 @@ db.exec(` CREATE TABLE IF NOT EXISTS orders (
 try {
   db.exec("ALTER TABLE orders ADD COLUMN created_at TEXT");
 } catch {}
+
+const ADMIN_USERNAME = "admin";
+const ADMIN_PASSWORD = "pizza123";
+
+const sessions = [];
 
 const server = createServer((request, response) => {
   if (request.method === "OPTIONS") {
@@ -171,6 +177,15 @@ const server = createServer((request, response) => {
 
   if (request.method === "DELETE" && request.url.startsWith("/api/orders/")) {
     const id = Number(request.url.split("/").pop());
+    const token = request.headers.authorization;
+    if (!sessions.includes(token)) {
+      response.writeHead(401, {
+        "Content-Type": "aplicaton/json",
+        "Access-Control-Allow-Origin": "*",
+      });
+      response.end(JSON.stringify({ error: "Unauthorized" }));
+      return;
+    }
     const result = db.prepare("DELETE FROM orders WHERE id = ?").run(id);
 
     if (result.changes === 0) {
@@ -204,9 +219,16 @@ const server = createServer((request, response) => {
         }
 
         const result = db
-          .prepare("UPDATE orders SET customer = ?, phone = ? WHERE id = ?")
-          .run(order.customer, order.phone, id);
-
+          .prepare(
+            "UPDATE orders SET customer = ?, phone = ?, address = ?, items = ? WHERE id = ?",
+          )
+          .run(
+            order.customer,
+            order.phone,
+            order.address,
+            JSON.stringify(order.items),
+            id,
+          );
         if (result.changes === 0) {
           response.writeHead(404, {
             "Content-Type": "application/json",
@@ -221,6 +243,46 @@ const server = createServer((request, response) => {
           "Access-Control-Allow-Origin": "*",
         });
         response.end(JSON.stringify({ status: "updated", id }));
+      } catch {
+        response.writeHead(400, {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        });
+        response.end(JSON.stringify({ error: "Invalid JSON" }));
+      }
+    });
+    return;
+  }
+
+  if (request.method === "POST" && request.url === "/api/login") {
+    let body = "";
+
+    request.on("data", (chunk) => {
+      body += chunk;
+    });
+
+    request.on("end", () => {
+      try {
+        const credentials = JSON.parse(body);
+
+        if (
+          credentials.username === ADMIN_USERNAME &&
+          credentials.password === ADMIN_PASSWORD
+        ) {
+          const token = Math.random().toString(36).slice(2);
+          sessions.push(token);
+          response.writeHead(200, {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          });
+          response.end(JSON.stringify({ token }));
+          return;
+        }
+        response.writeHead(401, {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        });
+        response.end(JSON.stringify({ error: "Invalid credentials" }));
       } catch {
         response.writeHead(400, {
           "Content-Type": "application/json",
