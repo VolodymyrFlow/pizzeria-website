@@ -4236,3 +4236,37 @@ It is not a measurement of overall page-speed improvement.
 - Credentials are hardcoded in source — real projects use env variables and hashed passwords.
 - Sessions live in memory — gone on restart; no expiry.
 - No login UI yet — all exercised via console fetch.
+
+## Coding Session 135 — Working Authentication Flow and CORS Headers
+
+**Date:** November 7, 2026
+
+### What We Did
+
+- Tested the full auth flow: login → token → authorized DELETE succeeded; unauthenticated DELETE returned 401.
+- Hit and fixed a real CORS error: the Authorization header was missing from Access-Control-Allow-Headers — added it so preflight passes.
+- Confirmed tokens die on restart (sessions are memory-only) — re-login was needed.
+- Reviewed preflight triggers: non-simple methods, custom headers, JSON content type.
+
+### Key Concepts
+
+- 204 No Content = success without a body — the right status for OPTIONS.
+- Access-Control-Allow-Headers must list every custom header the client sends.
+- Token in the Authorization header identifies the caller on protected routes.І
+
+## Coding Session 136 — Login Form in React
+
+**Date:** November 8, 2026
+
+### What We Did
+
+- Added a login section to App.jsx with username/password inputs, wired to POST /api/login.
+- New state: loginName, loginPass, loginToken, loginMessage — controlled inputs via value/onChange.
+- handleLoginSubmit prevents default, sends credentials as JSON, stores the returned token in state, shows "Logged in!" or a failure message.
+- Debugged the handler shape: the function must wrap the whole fetch chain — a closing brace after preventDefault breaks everything.
+
+### Key Concepts
+
+- The UI calls the same API the console used — the route doesn't care who sends the request.
+- Destructuring `{ token }` pulls the field straight out of the parsed response.
+- The `aplication/json` typo strikes again — protocols need exact strings.

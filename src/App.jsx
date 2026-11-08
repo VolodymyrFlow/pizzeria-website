@@ -67,6 +67,10 @@ function App() {
   const [checkoutAddress, setCheckoutAddress] = useState("");
   const [checkoutMessage, setCheckoutMessage] = useState("");
   const [orderSuccessMessage, setOrderSuccessMessage] = useState("");
+  const [loginName, setLoginName] = useState("");
+  const [loginPass, setLoginPass] = useState("");
+  const [loginToken, setLoginToken] = useState("");
+  const [loginMassage, setLoginMessage] = useState("");
   const [deliveryMethod, setDeliveryMethod] = useState("delivery");
   const [orderItems, setOrderItems] = useState(loadCart);
 
@@ -231,6 +235,29 @@ function App() {
       })
       .catch(() => {
         setCheckoutMessage("Could not send the order.Please try again.");
+      });
+  }
+
+  function handleLoginSubmit(event) {
+    event.preventDefault();
+
+    fetch("http://127.0.0.1:3001/api/login", {
+      method: "POST",
+      headers: { "Content-type": "aplication/json" },
+      body: JSON.stringify({ username: loginName, password: loginPass }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Invalid credentials");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setLoginToken(data.token);
+        setLoginMessage("Logged in!");
+      })
+      .catch(() => {
+        setLoginMessage("Login-failed - check username and password.");
       });
   }
 
@@ -490,6 +517,21 @@ function App() {
       </section>
 
       <Contact isOpen={isOpen} />
+
+      <section className="login-box">
+        <h3>Admin Login</h3>
+        <form onSubmit={handleLoginSubmit}>
+          <input
+            type="text"
+            placeholder="Username"
+            value={loginName}
+            onChange={(e) => setLoginName(e.target.value)}
+          />
+
+          <button type="submit">Login</button>
+        </form>
+        {loginMessage && <p>{loginMessage}</p>}
+      </section>
 
       <Footer />
     </div>
