@@ -4270,3 +4270,20 @@ It is not a measurement of overall page-speed improvement.
 - The UI calls the same API the console used — the route doesn't care who sends the request.
 - Destructuring `{ token }` pulls the field straight out of the parsed response.
 - The `aplication/json` typo strikes again — protocols need exact strings.
+
+## Coding Session 137 — Debugging the Login Form and Conditional Rendering
+
+**Date:** November 9, 2026
+
+### What We Did
+
+- Fixed a site-breaking ReferenceError: `loginMassage` typo — state name didn't match JSX usage → white screen.
+- Fixed the third `aplication/json` typo and added the missing password input (type="password").
+- Verified the login form end-to-end: admin/pizza123 → "Logged in!" with token in state.
+- Studied conditional rendering: `value && <p>` renders the right side only when truthy — and the famous 0 gotcha, where falsy numbers still render as text.
+
+### Key Concepts
+
+- `&&` returns an operand, not a boolean — `{count && <List>}` renders "0" when count is 0; `{count > 0 && ...}` is safe.
+- React ignores false/null/undefined/"" but renders 0 and NaN as text.
+- res.ok guards the success path — without it a 401 would still show "Logged in!".

@@ -70,7 +70,7 @@ function App() {
   const [loginName, setLoginName] = useState("");
   const [loginPass, setLoginPass] = useState("");
   const [loginToken, setLoginToken] = useState("");
-  const [loginMassage, setLoginMessage] = useState("");
+  const [loginMessage, setLoginMessage] = useState("");
   const [deliveryMethod, setDeliveryMethod] = useState("delivery");
   const [orderItems, setOrderItems] = useState(loadCart);
 
@@ -243,7 +243,7 @@ function App() {
 
     fetch("http://127.0.0.1:3001/api/login", {
       method: "POST",
-      headers: { "Content-type": "aplication/json" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username: loginName, password: loginPass }),
     })
       .then((res) => {
@@ -527,7 +527,12 @@ function App() {
             value={loginName}
             onChange={(e) => setLoginName(e.target.value)}
           />
-
+          <input
+            type="password"
+            placeholder="Password"
+            value={loginPass}
+            onChange={(e) => setLoginPass(e.target.value)}
+          />
           <button type="submit">Login</button>
         </form>
         {loginMessage && <p>{loginMessage}</p>}
