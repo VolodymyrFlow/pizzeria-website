@@ -261,6 +261,16 @@ function App() {
       });
   }
 
+  function handleDeleteOrders() {
+    fetch("http://127.0.0.1:3001/api/orders/1", {
+      method: "DELETE",
+      headers: { Authorization: loginToken },
+    })
+      .then((res) => res.json())
+      .then((data) => setLoginMessage(`Deleted: ${data.status}`))
+      .catch(() => setLoginMessage("Delete failed."));
+  }
+
   return (
     <div className={darkMode ? "app dark" : "app"}>
       <Navbar
@@ -536,6 +546,10 @@ function App() {
           <button type="submit">Login</button>
         </form>
         {loginMessage && <p>{loginMessage}</p>}
+
+        {loginToken !== "" && (
+          <button onClick={handleDeleteOrders}>Delete order</button>
+        )}
       </section>
 
       <Footer />

@@ -180,7 +180,7 @@ const server = createServer((request, response) => {
     const token = request.headers.authorization;
     if (!sessions.includes(token)) {
       response.writeHead(401, {
-        "Content-Type": "aplicaton/json",
+        "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
       });
       response.end(JSON.stringify({ error: "Unauthorized" }));
@@ -189,13 +189,19 @@ const server = createServer((request, response) => {
     const result = db.prepare("DELETE FROM orders WHERE id = ?").run(id);
 
     if (result.changes === 0) {
-      response.whiteHead(404, {
+      response.writeHead(404, {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
       });
-      response.end(JSON.stringify({ status: "deleted", id }));
+      response.end(JSON.stringify({ error: "Order not found" }));
       return;
     }
+    response.writeHead(200, {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    });
+    response.end(JSON.stringify({ status: "deleted", id }));
+    return;
   }
   if (request.method === "PUT" && request.url.startsWith("/api/orders/")) {
     const id = Number(request.url.split("/").pop());

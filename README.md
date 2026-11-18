@@ -4287,3 +4287,21 @@ It is not a measurement of overall page-speed improvement.
 - `&&` returns an operand, not a boolean — `{count && <List>}` renders "0" when count is 0; `{count > 0 && ...}` is safe.
 - React ignores false/null/undefined/"" but renders 0 and NaN as text.
 - res.ok guards the success path — without it a 401 would still show "Logged in!".
+
+## Coding Session 138 — Admin Delete Button and Server Crash Debug
+
+**Date:** November 18, 2026
+
+### What We Did
+
+- Added a protected admin feature: a "Delete order" button visible only when loginToken exists — real conditional rendering based on auth state.
+- handleDeleteOrders sends DELETE with the loginToken in the Authorization header and reports the result in loginMessage.
+- Debugged a real server crash: `response.whiteHead` (typo) killed the process on any DELETE — fixed to writeHead.
+- Fixed two more bugs in the DELETE route: `aplicaton/json` typo in the 401 Content-Type, and the 404 branch replying `{status:"deleted"}`; added the missing 200 success response.
+- Created a test order via curl so the button has a real row to delete.
+
+### Key Concepts
+
+- A server crash on request = unhandled exception in the handler — always read the terminal traceback.
+- One conditional JSX line controls admin visibility: `{loginToken !== "" && ...}`.
+- Same flow, three layers: UI button → HTTP+header → SQL+token check.
