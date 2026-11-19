@@ -71,6 +71,7 @@ function App() {
   const [loginPass, setLoginPass] = useState("");
   const [loginToken, setLoginToken] = useState("");
   const [loginMessage, setLoginMessage] = useState("");
+  const [orders, setOrders] = useState([]);
   const [deliveryMethod, setDeliveryMethod] = useState("delivery");
   const [orderItems, setOrderItems] = useState(loadCart);
 
@@ -261,14 +262,30 @@ function App() {
       });
   }
 
-  function handleDeleteOrders() {
-    fetch("http://127.0.0.1:3001/api/orders/1", {
+  function handleDeleteOrder(id) {
+    fetch(`http://127.0.0.1:3001/api/orders/${id}`, {
       method: "DELETE",
       headers: { Authorization: loginToken },
     })
       .then((res) => res.json())
-      .then((data) => setLoginMessage(`Deleted: ${data.status}`))
+      .then(() => {
+        setOrders(orders.filter((order) => order.id !== id));
+        setLoginMessage(`Order #${id} deleted.`);
+      })
       .catch(() => setLoginMessage("Delete failed."));
+  }
+
+  function handleLogout() {
+    setLoginToken("");
+    setOrders([]);
+    setLoginMessage("Logged out.");
+  }
+
+  function handleShowOrders() {
+    fetch("http://127.0.0.1:3001/api/orders")
+      .then((res) => res.json())
+      .then((data) => setOrders(data))
+      .catch(() => setLoadingMessage("Failed to load orders."));
   }
 
   return (
@@ -528,28 +545,48 @@ function App() {
 
       <Contact isOpen={isOpen} />
 
-      <section className="login-box">
-        <h3>Admin Login</h3>
-        <form onSubmit={handleLoginSubmit}>
-          <input
-            type="text"
-            placeholder="Username"
-            value={loginName}
-            onChange={(e) => setLoginName(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={loginPass}
-            onChange={(e) => setLoginPass(e.target.value)}
-          />
-          <button type="submit">Login</button>
-        </form>
-        {loginMessage && <p>{loginMessage}</p>}
+      <section className="admin-panel">
+        <h3>Admin Panel</h3>
 
-        {loginToken !== "" && (
-          <button onClick={handleDeleteOrders}>Delete order</button>
+        {loginToken === "" ? (
+          <form className="admin-form" onSubmit={handleLoginSubmit}>
+            <input
+              type="text"
+              placeholder="Username"
+              value={loginName}
+              onChange={(e) => setLoginName(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={loginPass}
+              onChange={(e) => setLoginPass(e.target.value)}
+            />
+            <button type="submit">Login</button>
+          </form>
+        ) : (
+          <div className="admin-controls">
+            <button onClick={handleShowOrders}>Show orders</button>
+            <button className="admin-logout" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
         )}
+
+        {loginMessage && <p className="admin-message">{loginMessage}</p>}
+
+        <ul className="admin-orders">
+          {orders.map((order) => (
+            <li key={order.id} className="admin-order">
+              <span>
+                #{order.id} — {order.customer} — {order.phone}
+              </span>
+              <button onClick={() => handleDeleteOrder(order.id)}>
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <Footer />
