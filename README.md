@@ -4305,3 +4305,50 @@ It is not a measurement of overall page-speed improvement.
 - A server crash on request = unhandled exception in the handler — always read the terminal traceback.
 - One conditional JSX line controls admin visibility: `{loginToken !== "" && ...}`.
 - Same flow, three layers: UI button → HTTP+header → SQL+token check.
+
+## Coding Session 139 — Styled Admin Panel and Per-Order Actions
+
+**Date:** November 19, 2026
+
+### What We Did
+
+- Added orders state, a Show orders handler, and list rendering with map.
+- Reworked the login section into a styled admin panel using the existing CSS variables.
+- Used a ternary operator to switch between the login form and admin controls.
+- Replaced the hardcoded DELETE URL with an order-specific URL.
+- Added client-side logout that clears the token and orders state.
+- Added filter-based removal of an order from the displayed list.
+
+### Learning and Limitations
+
+- Much of the panel implementation was provided by the mentor; independent reproduction is still a learning goal.
+- Hiding controls in React does not secure an API: protected routes need server-side authorization.
+- Client-side logout clears local state but does not invalidate the server session.
+- The DELETE handler still needs a response.ok check before updating the displayed list.
+- Styling and functional changes were combined; this was more than a behavior-preserving refactor.
+
+## Coding Session 140 — Understanding JSX Conditional Rendering
+
+**Date:** November 20, 2026
+
+### What We Studied
+
+- Reviewed the admin panel without making new code changes.
+- Broke down loginToken === "" and the ternary operator.
+- Explained JSX braces, strict equality, empty strings, parentheses, and closing tags.
+- Traced which branch React renders for an empty and a non-empty token.
+- Practised an English explanation of conditional rendering.
+
+### Understanding Check
+
+- Correctly identified that a non-empty token makes loginToken === "" evaluate to false, selecting the admin controls.
+
+### Key Concepts
+
+- condition ? firstExpression : secondExpression selects one of two expressions.
+- React renders the selected branch rather than hiding the other branch with CSS.
+- A non-empty token in frontend state does not prove that the server session is valid.
+
+### Next Step
+
+- Continue explaining the existing admin panel in small blocks before adding more functionality.
