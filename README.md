@@ -4352,3 +4352,21 @@ It is not a measurement of overall page-speed improvement.
 ### Next Step
 
 - Continue explaining the existing admin panel in small blocks before adding more functionality.
+
+## Coding Session 141 — Rebuilding handleDeleteOrder Piece by Piece
+
+**Date:** November 21, 2026
+
+### What We Did
+
+- Recapped the ternary operator from memory: empty token → login form.
+- Broke down handleDeleteOrder symbol by symbol: template literal `${id}`, Authorization header, then/catch chain.
+- Traced `orders.filter((order) => order.id !== id)` — a new array without the deleted order, no refetch needed.
+- Found a real bug: without `if (!res.ok) throw`, a 401 response still reaches the success .then and lies "Order deleted" — res.json() doesn't throw on error statuses.
+- Practised writing the function via a fill-in-the-blank skeleton: signature → fetch → then chain → catch.
+
+### Key Concepts
+
+- fetch only rejects on network errors — HTTP errors need res.ok checked manually.
+- Building handlers by answering three questions: where (URL), how (method/headers/body), what to do with the result.
+- camelCase, quoted strings, and space-free variable names are common first-writing mistakes.
