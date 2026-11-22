@@ -304,6 +304,7 @@ const server = createServer((request, response) => {
   response.end(JSON.stringify({ error: "Not found" }));
 });
 
-server.listen(3001, "127.0.0.1", () => {
-  console.log("Server running at http://127.0.0.1:3001");
+const port = process.env.PORT || 3001;
+server.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
