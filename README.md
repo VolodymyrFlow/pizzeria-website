@@ -4370,3 +4370,21 @@ It is not a measurement of overall page-speed improvement.
 - fetch only rejects on network errors — HTTP errors need res.ok checked manually.
 - Building handlers by answering three questions: where (URL), how (method/headers/body), what to do with the result.
 - camelCase, quoted strings, and space-free variable names are common first-writing mistakes.
+
+## Coding Session 142 — Fixing the res.ok Bug and Deployment Prep
+
+**Date:** November 22, 2026
+
+### What We Did
+
+- Fixed the bug found in session 141: added `if (!res.ok) throw` to handleDeleteOrder, so 401/404 responses now honestly show "Delete failed" instead of a fake success.
+- Reviewed the error flow: throw inside .then jumps straight to .catch, skipping the success branch.
+- Discussed what to memorize vs. understand: logic and debugging matter, syntax can be looked up.
+- Planned backend deployment on Render: PORT env var, listening on all interfaces, Node engines for node:sqlite, and the free-tier caveat (SQLite data resets on restart).
+- Code changes for deployment (listen port and package.json engines) were prepared as instructions for the user to apply — verify git status before pushing.
+
+### Key Concepts
+
+- res.ok is the only way to catch HTTP errors in a fetch chain.
+- Deployment needs the server to read PORT from the environment and bind to all interfaces.
+- Free hosting tradeoffs: ephemeral filesystem means the SQLite database is temporary.

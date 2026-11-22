@@ -267,7 +267,12 @@ function App() {
       method: "DELETE",
       headers: { Authorization: loginToken },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Delete failed");
+        }
+        return res.json();
+      })
       .then(() => {
         setOrders(orders.filter((order) => order.id !== id));
         setLoginMessage(`Order #${id} deleted.`);
