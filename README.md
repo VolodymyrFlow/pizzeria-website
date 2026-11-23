@@ -4388,3 +4388,23 @@ It is not a measurement of overall page-speed improvement.
 - res.ok is the only way to catch HTTP errors in a fetch chain.
 - Deployment needs the server to read PORT from the environment and bind to all interfaces.
 - Free hosting tradeoffs: ephemeral filesystem means the SQLite database is temporary.
+
+## Coding Session 143 — Full-Stack Deployment Live
+
+**Date:** November 23, 2026
+
+### What We Did
+
+- Fixed the failed Render deploy: the service watched polish/portfolio-ready while the PORT fix was on main — switched the branch and the deploy went live.
+- Changed server.listen to process.env.PORT with no host binding (Render assigns port 10000, requires 0.0.0.0).
+- Added Node engines for node:sqlite compatibility.
+- Replaced five hardcoded localhost fetches with a shared API_URL from import.meta.env.VITE_API_URL, falling back to localhost for dev.
+- Added VITE_API_URL on Vercel and redeployed — learned env vars only apply to new builds.
+- Avoided the stale deployment URL trap (-jbrr frozen URL) and used the production domain.
+- Verified the live stack: menu loads from Render, orders post to the live database, /api/orders readable publicly, login issues real tokens.
+
+### Key Concepts
+
+- Hosting needs env-based ports and binding to all interfaces.
+- Same codebase, two environments: env vars decide which backend the frontend calls.
+- Free tier cold starts mean the first request can take ~30s or fail.
