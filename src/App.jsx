@@ -31,6 +31,8 @@ const pizzaImages = {
   Marinara: marinaraImg,
 };
 
+const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:3001";
+
 function App() {
   const [activeCategory, setActiveCategory] = useState("all");
 
@@ -83,7 +85,7 @@ function App() {
     localStorage.setItem("theme", darkMode ? "dark" : "light");
   }, [darkMode]);
   useEffect(() => {
-    fetch("http://127.0.0.1:3001/api/pizzas")
+    fetch(`${API_URL}/api/pizzas`)
       .then((res) => {
         if (!res.ok) throw new Error("Server error");
         return res.json();
@@ -211,7 +213,7 @@ function App() {
       items: orderItems,
     };
 
-    fetch("http://127.0.0.1:3001/api/orders", {
+    fetch(`${API_URL}/api/orders`, {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(order),
@@ -242,7 +244,7 @@ function App() {
   function handleLoginSubmit(event) {
     event.preventDefault();
 
-    fetch("http://127.0.0.1:3001/api/login", {
+    fetch(`${API_URL}/api/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username: loginName, password: loginPass }),
@@ -263,7 +265,7 @@ function App() {
   }
 
   function handleDeleteOrder(id) {
-    fetch(`http://127.0.0.1:3001/api/orders/${id}`, {
+    fetch(`${API_URL}/api/orders/${id}`, {
       method: "DELETE",
       headers: { Authorization: loginToken },
     })
@@ -287,7 +289,7 @@ function App() {
   }
 
   function handleShowOrders() {
-    fetch("http://127.0.0.1:3001/api/orders")
+    fetch(`${API_URL}/api/orders`)
       .then((res) => res.json())
       .then((data) => setOrders(data))
       .catch(() => setLoadingMessage("Failed to load orders."));
