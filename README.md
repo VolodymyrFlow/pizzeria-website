@@ -4408,3 +4408,22 @@ It is not a measurement of overall page-speed improvement.
 - Hosting needs env-based ports and binding to all interfaces.
 - Same codebase, two environments: env vars decide which backend the frontend calls.
 - Free tier cold starts mean the first request can take ~30s or fail.
+
+## Coding Session 144 — Understanding the Deployment Architecture
+
+**Date:** November 24, 2026
+
+### What We Studied
+
+- Deployment explained simply: localhost dies with the laptop, Vercel/Render serve 24/7.
+- Why server code needed changes: Render assigns PORT via env, requires 0.0.0.0 binding — the `|| 3001` fallback keeps local dev working.
+- API_URL mechanics: import.meta.env.VITE_API_URL is baked in at build time — new env values need a redeploy.
+- CORS on the live stack: `*` works for a learning project with public data, production would whitelist the real domain.
+- Full request chain: browser → Vercel serves static files → fetch goes straight to Render → Node → SQLite.
+- SQLite deep-dive: file-based DB vs client-server DBs, prepared statements as "compiled queries", `?` placeholders vs SQL injection via string concatenation.
+- Free-tier caveat: ephemeral filesystem means orders.db resets on restart — Postgres is the real answer.
+
+### Key Concepts
+
+- prepare() compiles SQL text once; run()/all() execute it — ? keeps user input as data, never commands.
+- env vars bridge the same code to different environments.
