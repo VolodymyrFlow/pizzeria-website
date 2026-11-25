@@ -4427,3 +4427,30 @@ It is not a measurement of overall page-speed improvement.
 
 - prepare() compiles SQL text once; run()/all() execute it — ? keeps user input as data, never commands.
 - env vars bridge the same code to different environments.
+
+## Coding Session 145 — Protecting Order Access and Understanding Error Conditions
+
+**Date:** November 25, 2026
+
+### What We Worked On
+
+- Reviewed the remaining work needed for a portfolio-ready pizzeria.
+- Added a token check to the GET /api/orders handler in the editor, before reading the database.
+- Worked through updating handleShowOrders to send the Authorization header and check response.ok.
+- Explained the fetch chain: request → status check → JSON parsing → state update or error message.
+- Investigated an editor save conflict and corrected the spelling of process in the deployment configuration.
+
+### What We Understood
+
+- Hiding an admin button does not protect the API; the server must check access.
+- response.ok is true for HTTP statuses 200–299.
+- ! reverses a boolean: !true is false, and !false is true.
+- if executes its block when the condition is truthy; true does not automatically mean success.
+- Throwing inside a then handler rejects the promise chain, skipping the next success handler and reaching catch.
+- HTTP error statuses do not automatically reject fetch.
+
+### Verification Status
+
+- The server-side token check was reviewed from pasted code and screenshots.
+- Final saved files and end-to-end behavior were not verified during this session.
+- Next session: verify saving, confirm the frontend sends the token, and test authorized and unauthorized requests.
