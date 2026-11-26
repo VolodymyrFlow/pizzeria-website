@@ -1,43 +1,58 @@
 # Sapore Italiano — Pizzeria Website
 
-A responsive React + Vite website for a fictional Italian pizzeria in Prague. Built as a front-end portfolio project.
+A responsive full-stack website for a fictional Italian pizzeria in Prague: React frontend, Node.js API, and a SQLite database. Built as a portfolio project covering frontend, backend, databases, and deployment.
 
-**Live demo:** https://pizzeria-website-jbrr.vercel.app/ — deployed on Vercel; every push to `main` triggers a production build.
+**Live site:** https://pizzeria-website-delta.vercel.app/ — frontend on Vercel
+**Live API:** https://pizzeria-website.onrender.com — backend on Render (free tier; first request may take ~30s while it wakes up)
 
 ## Features
 
-- Two-column hero and a featured "Pizza of the Week" section
-- Pizza menu with live search and category filters (vegetarian, spicy, best seller)
-- Shopping cart with quantity controls, item thumbnails, and a running total
-- Checkout form with validation and a persistent cart (`localStorage`)
-- Table booking form with date/time and guest validation
-- Dark mode saved between visits
-- Fully responsive layout with an accessible mobile navigation menu
-- Optimized WebP images (~11.5 MB → ~731 KB total)
+- Pizza menu loaded from a live API with search and category filters
+- Shopping cart with quantity controls and a running total
+- Checkout that sends real orders to the backend, stored in SQLite
+- Admin panel: login → token → protected order list with per-order delete
+- Table booking form (demo — validates locally, no backend call)
+- Dark mode saved between visits, fully responsive layout
 - Restaurant open/closed status based on Prague time (`Europe/Prague`)
 
 ## Tech Stack
 
-- React, JSX, Vite
-- CSS (Flexbox, Grid, media queries, custom properties)
-- `localStorage` for cart and theme persistence
-- Node.js built-in test runner for utility functions
-- ESLint
+- **Frontend:** React, JSX, Vite, CSS (Flexbox, Grid, custom properties)
+- **Backend:** Node.js built-in `node:http`, `node:sqlite` (`DatabaseSync`)
+- **Database:** SQLite file (`orders.db`), prepared statements with `?` placeholders
+- **Auth:** login endpoint issuing in-memory tokens; DELETE and order reads require `Authorization`
+- **Deploy:** Vercel (frontend) + Render (backend); `VITE_API_URL` env var switches the API base
+
+## API
+
+| Method | Route             | Access         |
+| ------ | ----------------- | -------------- |
+| GET    | `/api/health`     | public         |
+| GET    | `/api/pizzas`     | public         |
+| POST   | `/api/orders`     | public         |
+| POST   | `/api/login`      | public         |
+| GET    | `/api/orders`     | token required |
+| PUT    | `/api/orders/:id` | public         |
+| DELETE | `/api/orders/:id` | token required |
+
+Login credentials for the demo: `admin` / `pizza123`.
 
 ## Getting Started
 
 ```bash
 npm install
-npm run dev
+npm run dev           # frontend on localhost:5173
+node server/index.js  # backend on localhost:3001
 ```
+
+The frontend uses `VITE_API_URL` when set, and falls back to `http://127.0.0.1:3001` for local development.
 
 ## Checks
 
 ```bash
 npm test        # unit tests for utils
-npm run lint    # ESLint
-npm run build   # production build
-npm run preview # preview the production build
+npm run lint    # ESLint — currently clean
+npm run build   # production build — currently passing
 ```
 
 ## Photo Credits
@@ -57,20 +72,25 @@ Interior photos in the Gallery section (Wikimedia Commons, CC BY-SA):
 - "Capri Italian Restaurant - June 2022 - Sarah Stierch 03.jpg" (CC BY 4.0)
 - "L'eau Vive restaurant, Rome.jpg" (CC BY-SA 3.0)
 
-## Demo Limitations
+## Known Limitations
 
-This is a front-end demo:
-
-- The checkout and booking forms validate input locally but do **not** send data to a real server or database.
-- Cart items are matched by `name`; a production version would use unique ids.
-- `localStorage` is browser storage, not a backend.
+- **Learning project, not production auth:** credentials are hardcoded, tokens use `Math.random()` and live in memory — a restart invalidates them.
+- **Ephemeral database on Render free tier:** `orders.db` resets on redeploy/restart; a real project would use Postgres.
+- **PUT is not yet token-protected** — only GET list and DELETE require auth.
+- The booking form is a demo — it validates locally without sending data.
+- CORS allows all origins for demo simplicity.
 
 ## Project Structure
 
-- `src/App.jsx` — application state and main sections
+- `src/App.jsx` — application state, API calls, and main sections
 - `src/components/` — presentational components (Navbar, Hero, Featured, PizzaCard, OrderItem, Gallery, Reviews, Contact, Footer, About)
-- `src/data/pizzas.js` — menu data
-- `src/utils/` — pure logic with unit tests (order totals, item count, Prague hour, opening hours, cart loading)
+- `src/data/pizzas.js` — fallback menu data
+- `src/utils/` — pure logic with unit tests
+- `server/index.js` — HTTP API, SQLite, auth, CRUD
+
+---
+
+## Learning Sessions Log
 
 ---
 
@@ -4454,3 +4474,20 @@ It is not a measurement of overall page-speed improvement.
 - The server-side token check was reviewed from pasted code and screenshots.
 - Final saved files and end-to-end behavior were not verified during this session.
 - Next session: verify saving, confirm the frontend sends the token, and test authorized and unauthorized requests.
+
+## Coding Session 146 — Verifying Authorization and Lint Cleanup
+
+**Date:** November 26, 2026
+
+### What We Did
+
+- Verified the saved token check on GET /api/orders: 401 without a token, 200 with a valid one — tested end-to-end with curl.
+- Fixed a ReferenceError: `procces` typo had reached the disk and crashed the server on start.
+- Cleaned all lint errors: removed an unused console import, documented the intentional empty catch, and imported process from node:process.
+- Confirmed lint is clean and the production build passes.
+- Rewrote README as portfolio documentation: live links, API table with access levels, honest limitations.
+
+### Key Concepts
+
+- Server-side checks are what actually protect data — verified with real requests, not just code review.
+- A typo surviving to disk shows why testing the running process matters more than reading diffs.

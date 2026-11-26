@@ -1,5 +1,5 @@
-import { error } from "node:console";
 import { createServer } from "node:http";
+import process from "node:process";
 import { DatabaseSync } from "node:sqlite";
 
 const menu = [
@@ -77,7 +77,9 @@ db.exec(` CREATE TABLE IF NOT EXISTS orders (
   `);
 try {
   db.exec("ALTER TABLE orders ADD COLUMN created_at TEXT");
-} catch {}
+} catch {
+  // Column already exists
+}
 
 const ADMIN_USERNAME = "admin";
 const ADMIN_PASSWORD = "pizza123";
