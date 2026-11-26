@@ -289,10 +289,17 @@ function App() {
   }
 
   function handleShowOrders() {
-    fetch(`${API_URL}/api/orders`)
-      .then((res) => res.json())
+    fetch(`${API_URL}/api/orders`, {
+      headers: { Authorization: loginToken },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to load orders");
+        }
+        return res.json();
+      })
       .then((data) => setOrders(data))
-      .catch(() => setLoadingMessage("Failed to load orders."));
+      .catch(() => setLoginMessage("Failed to load orders"));
   }
 
   return (

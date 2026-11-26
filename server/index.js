@@ -162,6 +162,16 @@ const server = createServer((request, response) => {
   }
 
   if (request.method === "GET" && request.url === "/api/orders") {
+    const token = request.headers.authorization;
+
+    if (!sessions.includes(token)) {
+      response.writeHead(401, {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      });
+      response.end(JSON.stringify({ error: "Unauthorized" }));
+      return;
+    }
     const rows = db.prepare("SELECT * FROM orders").all();
     const orders = rows.map((row) => ({
       ...row,
